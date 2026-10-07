@@ -1,11 +1,39 @@
 # Last match in file takes precedence.
 
 # Ping for all PRs
-* @Morb0 @JerryImMouse @DIMMoon1
+* @HyperB1
+
+# Prototypes (YAML)
+/Resources/*.yml @HyperB1
+/Resources/Prototypes/** @HyperB1
 
 # Maps
-/Resources/Prototypes/Maps/** @Morb0 @DIMMoon1 @kvant8
-/Resources/Maps/** @Morb0 @DIMMoon1 @kvant8
+/Resources/Prototypes/*/Maps/** @HyperB1 # individuals should later be replaced by the org's teams
+/Resources/Prototypes/Maps/** @HyperB1
+/Resources/Maps/** @HyperB1
 
-# Sprites
-/Resources/Textures/** @Morb0 @DIMMoon1 @Svist666s
+# Sprites (PNG & JSON)
+/Resources/Textures/** @HyperB1
+
+# Audio (OGG)
+/Resources/Audio/** @HyperB1
+
+# Localization (Fluent)
+/Resources/Locale/** @HyperB1
+
+# Content (C#)
+/Content.*/** @HyperB1 @Gorox221
+
+# UI (XAML)
+/Content.*/**/*.xaml* @HyperB1
+
+# Guidebook (XML)
+/Resources/ServerInfo/** @HyperB1 @Yuoko
+/Resources/ServerInfo/*/ServerRules/** @HyperB1 @Yuoko
+
+# Tools (Python)
+/Tools/** @HyperB1 @Gorox221
+
+# GitHub and root files
+/.github/** @HyperB1
+/* @HyperB1

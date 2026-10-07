@@ -2,11 +2,11 @@ name: Build & Test Map Renderer
 
 on:
   push:
-    branches: [ master, staging, stable ]
+    branches: [ master, staging, stable, main, dev, experimental, test, testing, event, upstream, beta, release, production ]
   merge_group:
   pull_request:
     types: [ opened, reopened, synchronize, ready_for_review ]
-    branches: [ master, staging, stable ]
+    branches: [ master, staging, stable, main, dev, experimental, test, testing, event, upstream, beta, release, production ]
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event_name == 'pull_request' && github.event.pull_request.number || github.ref }}
