@@ -1,11 +1,11 @@
 # Last match in file takes precedence.
 
 # Ping for all PRs
-* @HyperB1
+* @HyperB1 @Yuoko @Gorox221
 
 # Prototypes (YAML)
-/Resources/*.yml @HyperB1
-/Resources/Prototypes/** @HyperB1
+/Resources/*.yml @HyperB1 @Yuoko
+/Resources/Prototypes/** @HyperB1 @Yuoko
 
 # Maps
 /Resources/Prototypes/*/Maps/** @HyperB1 # individuals should later be replaced by the org's teams
@@ -25,7 +25,7 @@
 /Content.*/** @HyperB1 @Gorox221
 
 # UI (XAML)
-/Content.*/**/*.xaml* @HyperB1
+/Content.*/**/*.xaml* @HyperB1 @Gorox221
 
 # Guidebook (XML)
 /Resources/ServerInfo/** @HyperB1 @Yuoko
