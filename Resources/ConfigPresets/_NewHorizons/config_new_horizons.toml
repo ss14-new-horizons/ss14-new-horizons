@@ -1,0 +1,73 @@
+[game]
+lobbyenabled = true
+lobbyduration = 300
+role_timers = true
+# contraband_examine = false
+contraband_examine_only_in_hud = true
+maxplayers = 60
+soft_max_players = 50
+map_rotation = true
+admin_job_tracking = true
+# maxcharacterslots = 20 # should be more for sponsors and whitelisted
+# map_pool = NewHorizonsMapPool
+# fallbackpreset = "extended"
+# usepersistence = true # For persistent events only
+# cryo_sleep_rejoining = true # For persistent events only
+
+[game.panic_bunker]
+show_reason = true
+min_account_age = 10
+min_overall_minutes = 0
+enable_without_admins = true
+disable_with_admins = true
+
+[ic]
+flavor_text = true
+punctuation = false
+
+[ooc]
+enable_during_round = false
+
+[server]
+lobby_name = "️SS14 New Horizons"
+# rules_file = "NewHorizonsRuleset"
+
+[atmos]
+# space_wind = true
+# grid_impulse = true
+space_wind_max_velocity = 22.0
+max_explosion_range = 20.0
+
+[movement]
+# mob_pushing = true
+minimum_push = 0.05
+
+[shuttle]
+emergency_early_launch_allowed = true
+arrivals_map = "/Maps/Corvax/Misc/corvax_terminal.yml"
+auto_call_time = 0
+auto_call_extension_time = 60
+emergency_dock_time = 220
+
+[vote]
+same_type_timeout = 300.0
+preset_enabled = true
+restart_enabled = true
+map_enabled = true
+timerrestart = 30
+timermap = 60
+timerpreset = 60
+
+[admin]
+admins_count_in_playercount = true
+see_own_notes = true
+deadmin_on_join = true
+new_player_join_sound = true
+new_player_threshold = 1440
+
+[ahelp]
+admin_prefix = true
+
+[hub]
+# advertise = true
+tags = "lang:ru,rp:high,region:eu_e"
