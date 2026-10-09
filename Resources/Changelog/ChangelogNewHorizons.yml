@@ -1,0 +1,8 @@
+﻿Entries:
+- author: HyperB
+  changes:
+  - message: "Изменено веселье."
+    type: Tweak
+  id: 1
+  time: '2026-07-15T12:27:07.0000000+00:00'
+  url: https://github.com/ss14-new-horizons/ss14-new-horizons/pull/27
