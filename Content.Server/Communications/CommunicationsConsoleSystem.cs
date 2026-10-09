@@ -18,6 +18,7 @@ using Content.Shared.Screens;
 using Content.Shared.Station.Systems;
 using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
+using Robust.Shared.Utility; // New Horizons - edit
 
 namespace Content.Server.Communications
 {
@@ -217,6 +218,13 @@ namespace Content.Server.Communications
                 }
 
                 author = _identity.GetIdentityShortInfo(mob, uid) ?? author;
+                // New Horizons - edit start
+                var speakerEv = new TransformSpeakerNameEvent(mob, author);
+                RaiseLocalEvent(mob, speakerEv);
+                author = FormattedMessage.EscapeText(author);
+                if (speakerEv.JobIcon != null)
+                    author = $"[jobicon=\"{speakerEv.JobIcon}\"]" + author;
+                // New Horizons - edit end
             }
 
             comp.AnnouncementCooldownRemaining = comp.Delay;

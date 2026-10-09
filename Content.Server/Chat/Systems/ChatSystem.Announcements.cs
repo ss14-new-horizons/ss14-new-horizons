@@ -95,6 +95,6 @@ public sealed partial class ChatSystem
         var escapedMessage = FormattedMessage.EscapeText(message);
         return string.IsNullOrWhiteSpace(signature)
             ? Loc.GetString("chat-manager-sender-announcement-wrap-message", ("sender", sender), ("message", escapedMessage))
-            : Loc.GetString("chat-manager-sender-announcement-wrap-message-signed", ("sender", sender), ("message", escapedMessage), ("signature", FormattedMessage.EscapeText(signature)));
+            : Loc.GetString("chat-manager-sender-announcement-wrap-message-signed", ("sender", sender), ("message", escapedMessage), ("signature", signature)); // New Horizons - edit
     }
 }
