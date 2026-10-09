@@ -1,4 +1,6 @@
 using Content.Shared.Inventory;
+using Content.Shared.StatusIcon; // New Horizons - edit
+using Robust.Shared.Prototypes; // New Horizons - edit
 using Robust.Shared.Serialization;
 
 namespace Content.Shared.VoiceMask;
@@ -18,8 +20,11 @@ public sealed class VoiceMaskBuiState : BoundUserInterfaceState
     public readonly bool AccentHide;
     public readonly LocId TitleText;
     public readonly string TTSVoice; // Corvax-TTS
+    // New Horizons - edit start
+    public readonly ProtoId<JobIconPrototype>? JobIcon;
+    // New Horizons - edit end
 
-    public VoiceMaskBuiState(string name, string? verb, bool active, bool accentHide, LocId titleText, string voice) // Corvax-TTS
+    public VoiceMaskBuiState(string name, string? verb, bool active, bool accentHide, LocId titleText, string voice, ProtoId<JobIconPrototype>? jobIcon = null) // Corvax-TTS // New Horizons - edit
     {
         Name = name;
         Verb = verb;
@@ -27,6 +32,7 @@ public sealed class VoiceMaskBuiState : BoundUserInterfaceState
         AccentHide = accentHide;
         TitleText = titleText;
         TTSVoice = voice;  // Corvax-TTS
+        JobIcon = jobIcon; // New Horizons - edit
     }
 }
 
@@ -54,6 +60,17 @@ public sealed class VoiceMaskChangeVerbMessage : BoundUserInterfaceMessage
         Verb = verb;
     }
 }
+
+// New Horizons - edit start
+/// <summary>
+/// Change the job icon prototype to override, or null to reset/not override.
+/// </summary>
+[Serializable, NetSerializable]
+public sealed class VoiceMaskChangeJobIconMessage(ProtoId<JobIconPrototype>? icon) : BoundUserInterfaceMessage
+{
+    public readonly ProtoId<JobIconPrototype>? Icon = icon;
+}
+// New Horizons - edit end
 
 /// <summary>
 ///     Toggle the effects of the voice mask.

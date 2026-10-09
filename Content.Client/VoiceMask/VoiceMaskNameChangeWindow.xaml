@@ -1,24 +1,56 @@
 <controls:FancyWindow xmlns="https://spacestation14.io"
                xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
                Title="{Loc 'voice-mask-name-change-window'}"
-               MinSize="5 30">
-    <BoxContainer Orientation="Vertical" Margin="5">
-        <Label Text="{Loc 'voice-mask-name-change-info'}" />
-        <BoxContainer Orientation="Horizontal" Margin="5">
-            <LineEdit Name="NameSelector" HorizontalExpand="True" />
-            <Button Name="NameSelectorSet" Text="{Loc 'voice-mask-name-change-set'}" />
-        </BoxContainer>
-        <BoxContainer Orientation="Horizontal" Margin="5">
-            <Label Text="{Loc 'voice-mask-name-change-speech-style'}" />
-            <OptionButton Name="SpeechVerbSelector" /> <!-- Populated in LoadVerbs -->
-        </BoxContainer>
-        <Button Name="ToggleAccentButton" Text="{Loc 'voice-mask-name-change-accent-toggle'}" HorizontalExpand="True" ToggleMode="True" Margin="5"/>
-        <Button Name="ToggleButton" Text="{Loc 'voice-mask-name-change-toggle'}" HorizontalExpand="True" ToggleMode="True" Margin="5"/>
-        <!-- Corvax-TTS-Start -->
-        <BoxContainer Orientation="Horizontal" Margin="5" Visible="False" Name="TTSContainer">
-            <Label Text="{Loc 'voice-mask-voice-change-info'}" />
-            <OptionButton Name="VoiceSelector" /> <!-- Populated in LoadVerbs -->
-        </BoxContainer>
-        <!-- Corvax-TTS-End -->
+               MinSize="550 360">
+    <!-- New Horizons - edit start -->
+    <BoxContainer Orientation="Vertical" Margin="8">
+        <TabContainer Name="Tabs" VerticalExpand="True">
+            <!-- Settings / Voice Tab -->
+            <BoxContainer Name="VoiceTab" Orientation="Vertical" Margin="8">
+                <Label Text="{Loc 'voice-mask-name-change-info'}" />
+                <BoxContainer Orientation="Horizontal" Margin="0 5">
+                    <LineEdit Name="NameSelector" HorizontalExpand="True" />
+                    <Button Name="NameSelectorSet" Text="{Loc 'voice-mask-name-change-set'}" />
+                </BoxContainer>
+                <BoxContainer Orientation="Horizontal" Margin="0 5">
+                    <Label Text="{Loc 'voice-mask-name-change-speech-style'}" />
+                    <OptionButton Name="SpeechVerbSelector" /> <!-- Populated in LoadVerbs -->
+                </BoxContainer>
+                <Button Name="ToggleAccentButton" Text="{Loc 'voice-mask-name-change-accent-toggle'}" HorizontalExpand="True" ToggleMode="True" Margin="0 5"/>
+                <Button Name="ToggleButton" Text="{Loc 'voice-mask-name-change-toggle'}" HorizontalExpand="True" ToggleMode="True" Margin="0 5"/>
+                <!-- Corvax-TTS-Start -->
+                <BoxContainer Orientation="Horizontal" Margin="0 5" Visible="False" Name="TTSContainer">
+                    <Label Text="{Loc 'voice-mask-voice-change-info'}" />
+                    <OptionButton Name="VoiceSelector" /> <!-- Populated in LoadVerbs -->
+                </BoxContainer>
+                <!-- Corvax-TTS-End -->
+            </BoxContainer>
+
+            <!-- Job Icon Tab -->
+            <BoxContainer Name="JobIconTab" Orientation="Vertical" Margin="8">
+                <BoxContainer Orientation="Horizontal" Margin="0 0 0 8">
+                    <PanelContainer StyleClasses="PanelInsetDark">
+                        <TextureRect Name="CurrentJobIcon" Margin="4 0" Stretch="KeepAspectCentered"
+                                     VerticalAlignment="Center" HorizontalAlignment="Center" SetSize="32 32" />
+                    </PanelContainer>
+                    <Label Name="CurrentJobIconLabel" StyleClasses="LabelSubHeading" Margin="8 0" VerticalAlignment="Center" HorizontalExpand="True" />
+                    <Button Name="ClearJobIconButton" Text="{Loc 'voice-mask-job-icon-clear'}" VerticalAlignment="Center" />
+                </BoxContainer>
+                <BoxContainer Orientation="Horizontal" VerticalExpand="True">
+                    <ScrollContainer HorizontalExpand="False" VerticalExpand="True" MinWidth="160">
+                        <GridContainer Name="JobGroupGrid" Columns="1" Margin="4" />
+                    </ScrollContainer>
+                    <controls:Separator StyleClasses="LowDivider" VerticalExpand="True" Orientation="Vertical" Margin="4 0" />
+                    <PanelContainer StyleClasses="PanelInsetDark" HorizontalExpand="True" VerticalExpand="True">
+                        <ScrollContainer HorizontalExpand="True" VerticalExpand="True">
+                            <BoxContainer Margin="8">
+                                <GridContainer Name="IconGrid" Columns="6" />
+                            </BoxContainer>
+                        </ScrollContainer>
+                    </PanelContainer>
+                </BoxContainer>
+            </BoxContainer>
+        </TabContainer>
     </BoxContainer>
+    <!-- New Horizons - edit end -->
 </controls:FancyWindow>
