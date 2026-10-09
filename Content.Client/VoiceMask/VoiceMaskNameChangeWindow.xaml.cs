@@ -146,6 +146,9 @@ public sealed partial class VoiceMaskNameChangeWindow : FancyWindow
 
         foreach (var groupProto in groups)
         {
+            if (groupProto.ID == "AdminIconGroup")
+                continue;
+
             var groupButton = CreateGroupButton(groupProto, jobGroupButtonGroup);
             groupButton.OnPressed += _ => SetJobIcons(groupProto.Icons);
 
