@@ -63,6 +63,10 @@ public sealed partial class RadioSystem : SharedRadioSystem
 
         var name = evt.VoiceName;
         name = _chat.ChatNameLinks ? $"[textlink=\"{FormattedMessage.EscapeStringParameter(name)}\" entity=\"{GetNetEntity(messageSource)}\" color=\"{channel.Color.ToHex()}\"]" : FormattedMessage.EscapeText(name);
+        // New Horizons - edit start
+        if (evt.JobIcon != null)
+            name = $"[jobicon=\"{evt.JobIcon}\"]" + name;
+        // New Horizons - edit end
 
         SpeechVerbPrototype speech;
         if (evt.SpeechVerb != null && ProtoMan.Resolve(evt.SpeechVerb, out var evntProto))

@@ -29,6 +29,10 @@
     - Supply
   - type: IgnoreUIRange
   - type: StationAiHeld
+  # New Horizons - edit start
+  - type: InnateRadioJobIcon
+    icon: JobIconStationAi
+  # New Horizons - edit end
   - type: StationAiOverlay
   - type: ShowElectrocutionHUD
   - type: ActionGrant
@@ -455,6 +459,10 @@
     - HideContextMenu
     - StationAi
     - NoConsoleSound
+  # New Horizons - edit start
+  - type: InnateRadioJobIcon
+    icon: JobIconStationAi
+  # New Horizons - edit end
   - type: StartingMindRole
     mindRole: "MindRoleSiliconBrain"
     silent: true
