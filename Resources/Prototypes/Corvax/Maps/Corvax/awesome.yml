@@ -2,7 +2,7 @@
   id: CorvaxAwesome
   mapName: 'Awesome Station'
   mapPath: /Maps/Corvax/corvax_awesome.yml 
-  minPlayers: 25
+  minPlayers: 20 # NH-Tweak (25)
   maxPlayers: 55
   stations:
     Awesome:

@@ -2,7 +2,7 @@
   id: Sushi
   mapName: 'Sushi Station'
   mapPath: /Maps/sushi.yml
-  minPlayers: 45
+  minPlayers: 40 # NH-Tweak (45)
   stations:
     Sushi:
       stationProto: StandardNanotrasenStation

@@ -2,7 +2,7 @@
   id: Plasma
   mapName: 'Plasma'
   mapPath: /Maps/plasma.yml
-  minPlayers: 30
+  minPlayers: 20 # NH-Tweak (30)
   maxPlayers: 65
   stations:
     Plasma:

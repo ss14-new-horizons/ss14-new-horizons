@@ -4,7 +4,7 @@
   mapPath: /Maps/Corvax/corvax_outpost.yml
   maxRandomOffset: 0
   randomRotation: false
-  minPlayers: 25
+  minPlayers: 15 # NH-Tweak (25)
   maxPlayers: 55
   stations:
     Outpost:

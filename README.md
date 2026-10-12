@@ -1,5 +1,5 @@
 <div class="header" align="center">
-<img alt="New Horizons" width="880" height="300" src="https://raw.githubusercontent.com/ss14-new-horizons/ss14-new-horizons/master/Resourses/Textures/_NewHorizons/Logo/logo-nh.png">
+<img alt="New Horizons" width="880" height="300" src="https://raw.githubusercontent.com/ss14-new-horizons/ss14-new-horizons/master/Resources/Textures/_NewHorizons/Logo/logo-nh.png">
 </div>
 
 Это репозиторий исходного кода проекта русскоязычного сервера **New Horizons** ("Новые Горизонты"), форка [Space Station 14](https://github.com/space-wizards/space-station-14), основанного на билде проекта [Corvax](https://github.com/space-syndicate/space-station-14).

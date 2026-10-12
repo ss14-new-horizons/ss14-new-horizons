@@ -103,6 +103,10 @@
       coefficients:
         Heat: 0.90
         Radiation: 0.75
+  # NH-Add-Start
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.9
+  # NH-Add-End
   - type: PointLight
     radius: 5
     energy: 2

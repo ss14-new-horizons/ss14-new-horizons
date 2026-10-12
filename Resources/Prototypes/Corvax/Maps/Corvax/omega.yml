@@ -2,7 +2,7 @@
   id: CorvaxOmega
   mapName: 'Omega Station'
   mapPath: /Maps/Corvax/corvax_omega.yml
-  minPlayers: 7
+  minPlayers: 5 # NH-Tweak (7)
   maxPlayers: 35
   stations:
     Omega:

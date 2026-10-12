@@ -182,6 +182,7 @@
   - type: EncryptionKey
     channels:
     - Science
+    - Binary # NH-Add
     defaultChannel: Science
   - type: Sprite
     layers:

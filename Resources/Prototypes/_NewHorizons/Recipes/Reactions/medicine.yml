@@ -1,0 +1,19 @@
+# Return of Ambuzol Plus with a harder recipe
+- type: reaction
+  id: AmbuzolPlus
+  minTemp: 370
+  reactants:
+    Ambuzol:
+      amount: 3
+    Omnizine:
+      amount: 2
+    Opporozidone:
+      amount: 1
+    Cryptobiolin:
+      amount: 1
+  products:
+    AmbuzolPlus: 5
+  effects:
+  - !type:CreateGas
+    gas: WaterVapor
+    moles: 0.4
