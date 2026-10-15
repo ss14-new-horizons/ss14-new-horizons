@@ -29,10 +29,10 @@
     - Supply
   - type: IgnoreUIRange
   - type: StationAiHeld
-  # New Horizons - edit start
+  # NH-Add-Start (Radio job icons)
   - type: InnateRadioJobIcon
     icon: JobIconStationAi
-  # New Horizons - edit end
+  # NH-Add-End
   - type: StationAiOverlay
   - type: ShowElectrocutionHUD
   - type: ActionGrant
@@ -459,10 +459,10 @@
     - HideContextMenu
     - StationAi
     - NoConsoleSound
-  # New Horizons - edit start
+  # NH-Add-Start (Radio job icons)
   - type: InnateRadioJobIcon
     icon: JobIconStationAi
-  # New Horizons - edit end
+  # NH-Add-End
   - type: StartingMindRole
     mindRole: "MindRoleSiliconBrain"
     silent: true

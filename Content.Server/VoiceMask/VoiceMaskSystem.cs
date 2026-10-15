@@ -12,7 +12,7 @@ using Content.Shared.Lock;
 using Content.Shared.Popups;
 using Content.Shared.Speech;
 using Content.Shared.Speech.EntitySystems;
-using Content.Shared.StatusIcon; // New Horizons - edit
+using Content.Shared.StatusIcon; // NH-Add (Radio job icons)
 using Content.Shared.VoiceMask;
 using Robust.Shared.Configuration;
 using Robust.Shared.Containers;
@@ -69,7 +69,7 @@ public sealed partial class VoiceMaskSystem : EntitySystem
         SubscribeLocalEvent<VoiceMaskComponent, LockToggledEvent>(OnLockToggled);
         SubscribeLocalEvent<VoiceMaskComponent, VoiceMaskChangeNameMessage>(OnChangeName);
         SubscribeLocalEvent<VoiceMaskComponent, VoiceMaskChangeVerbMessage>(OnChangeVerb);
-        SubscribeLocalEvent<VoiceMaskComponent, VoiceMaskChangeJobIconMessage>(OnChangeJobIcon); // New Horizons - edit
+        SubscribeLocalEvent<VoiceMaskComponent, VoiceMaskChangeJobIconMessage>(OnChangeJobIcon); // NH-Add (Radio job icons)
         SubscribeLocalEvent<VoiceMaskComponent, VoiceMaskToggleMessage>(OnToggle);
         SubscribeLocalEvent<VoiceMaskComponent, VoiceMaskAccentToggleMessage>(OnAccentToggle);
         SubscribeLocalEvent<VoiceMaskComponent, ClothingGotEquippedEvent>(OnEquip);
@@ -201,7 +201,7 @@ public sealed partial class VoiceMaskSystem : EntitySystem
         UpdateUI(entity);
     }
 
-    // New Horizons - edit start
+    // NH-Add-Start (Radio job icons)
     private void OnChangeJobIcon(Entity<VoiceMaskComponent> entity, ref VoiceMaskChangeJobIconMessage msg)
     {
         if (msg.Icon is { } id && !ProtoMan.HasIndex<JobIconPrototype>(id))
@@ -213,7 +213,7 @@ public sealed partial class VoiceMaskSystem : EntitySystem
 
         UpdateUI(entity);
     }
-    // New Horizons - edit end
+    // NH-Add-End
 
     private void OnChangeName(Entity<VoiceMaskComponent> entity, ref VoiceMaskChangeNameMessage message)
     {
@@ -286,7 +286,7 @@ public sealed partial class VoiceMaskSystem : EntitySystem
     private void UpdateUI(Entity<VoiceMaskComponent> entity)
     {
         if (_uiSystem.HasUi(entity, VoiceMaskUIKey.Key))
-            _uiSystem.SetUiState(entity.Owner, VoiceMaskUIKey.Key, new VoiceMaskBuiState(GetCurrentVoiceName(entity), entity.Comp.VoiceMaskSpeechVerb, entity.Comp.Active, entity.Comp.AccentHide, entity.Comp.TitleText, entity.Comp.VoiceId, entity.Comp.VoiceMaskJobIcon)); //entity.Comp.VoiceId Corvax-TTS // New Horizons - edit
+            _uiSystem.SetUiState(entity.Owner, VoiceMaskUIKey.Key, new VoiceMaskBuiState(GetCurrentVoiceName(entity), entity.Comp.VoiceMaskSpeechVerb, entity.Comp.Active, entity.Comp.AccentHide, entity.Comp.TitleText, entity.Comp.VoiceId, entity.Comp.VoiceMaskJobIcon)); //entity.Comp.VoiceId Corvax-TTS // NH-Edit (Radio job icons)
     }
     #endregion
 
@@ -303,10 +303,10 @@ public sealed partial class VoiceMaskSystem : EntitySystem
 
         args.VoiceName = GetCurrentVoiceName(entity);
         args.SpeechVerb = entity.Comp.VoiceMaskSpeechVerb ?? args.SpeechVerb;
-        // New Horizons - edit start
+        // NH-Add-Start (Radio job icons)
         if (entity.Comp.VoiceMaskJobIcon != null)
             args.JobIcon = entity.Comp.VoiceMaskJobIcon;
-        // New Horizons - edit end
+        // NH-Add-End
     }
     #endregion
 }

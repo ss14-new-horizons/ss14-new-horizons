@@ -109,10 +109,10 @@
     fuelCost: 0.5
     allowSelfRepair: false
   - type: BorgChassis
-  # New Horizons - edit start
+  # NH-Add-Start (Radio job icons)
   - type: InnateRadioJobIcon
     icon: JobIconBorg
-  # New Horizons - edit end
+  # NH-Add-End
   - type: LockingWhitelist
     blacklist:
       components:

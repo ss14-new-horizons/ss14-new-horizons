@@ -1,9 +1,7 @@
 using Content.Shared.Inventory;
 using Content.Shared.Radio;
 using Content.Shared.Speech;
-// New Horizons - edit start
-using Content.Shared.StatusIcon;
-// New Horizons - edit end
+using Content.Shared.StatusIcon; // NH-Add (Radio job icons)
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
@@ -19,14 +17,14 @@ public sealed class TransformSpeakerNameEvent : EntityEventArgs, IInventoryRelay
     public EntityUid Sender;
     public string VoiceName;
     public ProtoId<SpeechVerbPrototype>? SpeechVerb;
-    public ProtoId<JobIconPrototype>? JobIcon; // New Horizons - edit
+    public ProtoId<JobIconPrototype>? JobIcon; // NH-Add (Radio job icons)
 
     public TransformSpeakerNameEvent(EntityUid sender, string name)
     {
         Sender = sender;
         VoiceName = name;
         SpeechVerb = null;
-        JobIcon = null; // New Horizons - edit
+        JobIcon = null; // NH-Add (Radio job icons)
     }
 }
 
