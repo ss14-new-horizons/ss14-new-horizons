@@ -1,5 +1,5 @@
 <!-- Спасибо за вклад в наше сообщество! Текст между стрелками - это комментарии, они не будут видны в вашем PR. Вы можете редактировать этот шаблон PRа по необходимости.
-Ознакомьтесь с разделом "Contributing" репозитория и с руководством по PRам: https://docs.spacestation14.com/en/general-development/codebase-info/pull-request-guidelines.html -->
+Ознакомьтесь с разделом "Contributing" репозитория и с руководством по PRам: https://docs.spacestation14.io/en/getting-started/pr-guideline -->
 
 ## Описание PR
 <!-- Что вы изменили? -->
