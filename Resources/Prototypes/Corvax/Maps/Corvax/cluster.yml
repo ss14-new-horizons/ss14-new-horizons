@@ -2,7 +2,7 @@
   id: CorvaxCluster
   mapName: 'Cluster Station'
   mapPath: /Maps/Corvax/corvax_cluster.yml
-  minPlayers: 5 # NH-Tweak (10)
+  minPlayers: 10
   maxPlayers: 35
   stations:
     Cluster:
