@@ -272,6 +272,10 @@
         Caustic: 0.8
         Heat: 0.9
         # NH-Add-End
+  # NH-Add-Start
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.75
+  # NH-Add-End
   - type: ClothingSpeedModifier
     walkModifier: 0.8 # Corvax-Brigmedic
     sprintModifier: 0.8 # Corvax-Brigmedic

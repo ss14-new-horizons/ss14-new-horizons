@@ -175,6 +175,10 @@
   - type: PressureProtection
     highPressureMultiplier: 0.6
     lowPressureMultiplier: 1000
+  # NH-Add-Start
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.9
+  # NH-Add-End
 
 #Warden's Hardsuit
 - type: entity
