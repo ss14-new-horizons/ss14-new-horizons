@@ -315,6 +315,7 @@
       - ClothMade
       - Paper
       - Pill
+      - Flower # NH-Add
 
 - type: entity
   parent: [ OrganBaseLiver, OrganSpriteHumanInternal, OrganMothInternal, OrganAnimalMetabolizer ]

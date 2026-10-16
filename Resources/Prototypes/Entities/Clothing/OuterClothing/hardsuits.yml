@@ -268,6 +268,14 @@
         Blunt: 0.8
         Slash: 0.8
         Piercing: 0.7
+        # NH-Add-Start
+        Caustic: 0.8
+        Heat: 0.9
+        # NH-Add-End
+  # NH-Add-Start
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.75
+  # NH-Add-End
   - type: ClothingSpeedModifier
     walkModifier: 0.8 # Corvax-Brigmedic
     sprintModifier: 0.8 # Corvax-Brigmedic
@@ -372,6 +380,7 @@
         Heat: 0.4
         Radiation: 0.0
         Caustic: 0.7
+        Shock: 0.7 # NH-Add
   - type: ClothingSpeedModifier
     walkModifier: 0.8
     sprintModifier: 0.8
@@ -492,6 +501,12 @@
         Heat: 0.8
         Radiation: 0.5
         Caustic: 0.6
+  # NH-Add-Start
+  - type: StaminaResistance
+    damageCoefficient: 0.8
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.8
+  # NH-Add-End
   - type: ClothingSpeedModifier
     walkModifier: 0.8
     sprintModifier: 0.8
@@ -593,6 +608,10 @@
     sprite: Clothing/OuterClothing/Hardsuits/syndiemedic.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Hardsuits/syndiemedic.rsi
+  # NH-Add-Start
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.75
+  # NH-Add-End
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSyndieMedic
   - type: Tag
@@ -697,7 +716,8 @@
   - type: PressureProtection
     highPressureMultiplier: 0.2
     lowPressureMultiplier: 1000
-  # - type: StaminaResistance # Should not have stamina resistance, this is purely so people know it was not forgotten.
+  - type: StaminaResistance # Should not have stamina resistance, this is purely so people know it was not forgotten. # NH-Edit (readd stamina resistance)
+    damageCoefficient: 0.9 # NH-Add
   - type: Armor
     modifiers:
       coefficients:

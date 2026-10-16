@@ -13,6 +13,7 @@
     storedRotation: -90
   - type: Edible
     requiresSpecialDigestion: true
+    delay: 2 # NH-Add
   - type: Solution
     solution:
       reagents:
@@ -116,8 +117,10 @@
   name: base space helmet
   components:
 # SlotBlocker blocked until UI change
-#  - type: SlotBlock
-#    slots: [ears, eyes, mask]
+  # NH-Edit-Start (uncommented SlotBlock)
+  - type: SlotBlock
+    slots: [ears, eyes, mask]
+  # NH-Edit-End
   - type: BreathMask
   - type: Item
     size: Normal
@@ -152,8 +155,10 @@
   categories: [ HideSpawnMenu ]
   components:
 # SlotBlocker blocked until UI change
-#  - type: SlotBlock
-#    slots: [ears, eyes, mask]
+  # NH-Edit-Start (uncommented SlotBlock)
+  - type: SlotBlock
+    slots: [ears, eyes, mask]
+  # NH-Edit-End
   - type: BreathMask
   - type: Sprite
     state: icon # default state used by most inheritors
@@ -209,8 +214,10 @@
   categories: [ HideSpawnMenu ]
   components:
 # SlotBlocker blocked until UI change
-#  - type: SlotBlock
-#    slots: [ears, eyes, mask]
+  # NH-Edit-Start (uncommented SlotBlock)
+  - type: SlotBlock
+    slots: [ears, eyes, mask]
+  # NH-Edit-End
   - type: Sprite
     layers:
     - state: icon
