@@ -1,6 +1,7 @@
-using Content.Shared.Speech;
-using Robust.Shared.Prototypes;
 using Content.Shared.Humanoid;
+using Content.Shared.Speech;
+using Content.Shared.StatusIcon; // NH-Add (Radio job icons)
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared.VoiceMask;
 
@@ -57,6 +58,14 @@ public sealed partial class VoiceMaskComponent : Component
     /// </summary>
     [DataField]
     public bool Active = false;
+
+    // NH-Add-Start (Radio job icons)
+    /// <summary>
+    ///     Job icon override for radio chat when the voice mask is active.
+    /// </summary>
+    [DataField]
+    public ProtoId<JobIconPrototype>? VoiceMaskJobIcon;
+    // NH-Add-End
 
     /// <summary>
     ///     If user's accent is getting hidden when they speak.

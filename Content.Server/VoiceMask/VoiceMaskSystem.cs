@@ -12,9 +12,11 @@ using Content.Shared.Lock;
 using Content.Shared.Popups;
 using Content.Shared.Speech;
 using Content.Shared.Speech.EntitySystems;
+using Content.Shared.StatusIcon; // NH-Add (Radio job icons)
 using Content.Shared.VoiceMask;
 using Robust.Shared.Configuration;
 using Robust.Shared.Containers;
+using Robust.Shared.Prototypes; // NH-Add (Radio job icons)
 
 namespace Content.Server.VoiceMask;
 
@@ -68,6 +70,7 @@ public sealed partial class VoiceMaskSystem : EntitySystem
         SubscribeLocalEvent<VoiceMaskComponent, LockToggledEvent>(OnLockToggled);
         SubscribeLocalEvent<VoiceMaskComponent, VoiceMaskChangeNameMessage>(OnChangeName);
         SubscribeLocalEvent<VoiceMaskComponent, VoiceMaskChangeVerbMessage>(OnChangeVerb);
+        SubscribeLocalEvent<VoiceMaskComponent, VoiceMaskChangeJobIconMessage>(OnChangeJobIcon); // NH-Add (Radio job icons)
         SubscribeLocalEvent<VoiceMaskComponent, VoiceMaskToggleMessage>(OnToggle);
         SubscribeLocalEvent<VoiceMaskComponent, VoiceMaskAccentToggleMessage>(OnAccentToggle);
         SubscribeLocalEvent<VoiceMaskComponent, ClothingGotEquippedEvent>(OnEquip);
@@ -199,6 +202,44 @@ public sealed partial class VoiceMaskSystem : EntitySystem
         UpdateUI(entity);
     }
 
+    // NH-Add-Start (Radio job icons)
+    private static readonly ProtoId<JobIconGroupPrototype> AdminIconGroup = "AdminIconGroup";
+
+    private bool IsAllowedJobIcon(ProtoId<JobIconPrototype> iconId)
+    {
+        if (!ProtoMan.HasIndex(iconId))
+            return false;
+
+        var inAllowedGroup = false;
+        foreach (var group in ProtoMan.EnumeratePrototypes<JobIconGroupPrototype>())
+        {
+            if (group.ID == AdminIconGroup)
+            {
+                if (group.Icons.Contains(iconId))
+                    return false;
+                continue;
+            }
+
+            if (group.Icons.Contains(iconId))
+                inAllowedGroup = true;
+        }
+
+        return inAllowedGroup;
+    }
+
+    private void OnChangeJobIcon(Entity<VoiceMaskComponent> entity, ref VoiceMaskChangeJobIconMessage msg)
+    {
+        if (msg.Icon is { } id && !IsAllowedJobIcon(id))
+            return;
+
+        entity.Comp.VoiceMaskJobIcon = msg.Icon;
+
+        _popupSystem.PopupEntity(Loc.GetString("voice-mask-popup-success"), entity, msg.Actor);
+
+        UpdateUI(entity);
+    }
+    // NH-Add-End
+
     private void OnChangeName(Entity<VoiceMaskComponent> entity, ref VoiceMaskChangeNameMessage message)
     {
         if (message.Name.Length > _maxNameLength || message.Name.Length <= 0)
@@ -270,7 +311,7 @@ public sealed partial class VoiceMaskSystem : EntitySystem
     private void UpdateUI(Entity<VoiceMaskComponent> entity)
     {
         if (_uiSystem.HasUi(entity, VoiceMaskUIKey.Key))
-            _uiSystem.SetUiState(entity.Owner, VoiceMaskUIKey.Key, new VoiceMaskBuiState(GetCurrentVoiceName(entity), entity.Comp.VoiceMaskSpeechVerb, entity.Comp.Active, entity.Comp.AccentHide, entity.Comp.TitleText, entity.Comp.VoiceId)); //entity.Comp.VoiceId Corvax-TTS
+            _uiSystem.SetUiState(entity.Owner, VoiceMaskUIKey.Key, new VoiceMaskBuiState(GetCurrentVoiceName(entity), entity.Comp.VoiceMaskSpeechVerb, entity.Comp.Active, entity.Comp.AccentHide, entity.Comp.TitleText, entity.Comp.VoiceId, entity.Comp.VoiceMaskJobIcon)); //entity.Comp.VoiceId Corvax-TTS // NH-Edit (Radio job icons)
     }
     #endregion
 
@@ -287,6 +328,10 @@ public sealed partial class VoiceMaskSystem : EntitySystem
 
         args.VoiceName = GetCurrentVoiceName(entity);
         args.SpeechVerb = entity.Comp.VoiceMaskSpeechVerb ?? args.SpeechVerb;
+        // NH-Add-Start (Radio job icons)
+        if (entity.Comp.VoiceMaskJobIcon != null)
+            args.JobIcon = entity.Comp.VoiceMaskJobIcon;
+        // NH-Add-End
     }
     #endregion
 }
