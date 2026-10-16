@@ -14,6 +14,6 @@ public sealed class InnateRadioJobIconSystem : EntitySystem
 
     private void OnTransformSpeakerName(Entity<InnateRadioJobIconComponent> ent, ref TransformSpeakerNameEvent args)
     {
-        args.JobIcon = ent.Comp.Icon;
+        args.JobIcon ??= ent.Comp.Icon;
     }
 }

@@ -16,6 +16,7 @@ using Content.Shared.StatusIcon; // NH-Add (Radio job icons)
 using Content.Shared.VoiceMask;
 using Robust.Shared.Configuration;
 using Robust.Shared.Containers;
+using Robust.Shared.Prototypes; // NH-Add (Radio job icons)
 
 namespace Content.Server.VoiceMask;
 
@@ -202,9 +203,33 @@ public sealed partial class VoiceMaskSystem : EntitySystem
     }
 
     // NH-Add-Start (Radio job icons)
+    private static readonly ProtoId<JobIconGroupPrototype> AdminIconGroup = "AdminIconGroup";
+
+    private bool IsAllowedJobIcon(ProtoId<JobIconPrototype> iconId)
+    {
+        if (!ProtoMan.HasIndex(iconId))
+            return false;
+
+        var inAllowedGroup = false;
+        foreach (var group in ProtoMan.EnumeratePrototypes<JobIconGroupPrototype>())
+        {
+            if (group.ID == AdminIconGroup)
+            {
+                if (group.Icons.Contains(iconId))
+                    return false;
+                continue;
+            }
+
+            if (group.Icons.Contains(iconId))
+                inAllowedGroup = true;
+        }
+
+        return inAllowedGroup;
+    }
+
     private void OnChangeJobIcon(Entity<VoiceMaskComponent> entity, ref VoiceMaskChangeJobIconMessage msg)
     {
-        if (msg.Icon is { } id && !ProtoMan.HasIndex<JobIconPrototype>(id))
+        if (msg.Icon is { } id && !IsAllowedJobIcon(id))
             return;
 
         entity.Comp.VoiceMaskJobIcon = msg.Icon;

@@ -36,7 +36,11 @@ public sealed partial class VoiceMaskNameChangeWindow : FancyWindow
     private List<TTSVoicePrototype> _voices = new(); // Corvax-TTS
 
     private string? _verb;
-    private ProtoId<JobIconPrototype>? _currentJobIcon; // NH-Add (Radio job icons)
+    // NH-Add-Start (Radio job icons)
+    private ProtoId<JobIconPrototype>? _currentJobIcon;
+    private readonly List<(JobIconGroupPrototype Proto, ContainerButton Button)> _groupButtons = new();
+    private string? _selectedGroupId;
+    // NH-Add-End
     public VoiceMaskNameChangeWindow()
     {
         RobustXamlLoader.Load(this);
@@ -133,13 +137,9 @@ public sealed partial class VoiceMaskNameChangeWindow : FancyWindow
     {
         JobGroupGrid.DisposeAllChildren();
         IconGrid.DisposeAllChildren();
+        _groupButtons.Clear();
 
         var jobGroupButtonGroup = new ButtonGroup();
-        ContainerButton? firstGroupButton = null;
-        IReadOnlyList<ProtoId<JobIconPrototype>>? firstGroupIcons = null;
-        ContainerButton? matchingGroupButton = null;
-        IReadOnlyList<ProtoId<JobIconPrototype>>? matchingGroupIcons = null;
-
         var groups = _prototypeManager.EnumeratePrototypes<JobIconGroupPrototype>().ToList();
 
         foreach (var groupProto in groups)
@@ -148,27 +148,47 @@ public sealed partial class VoiceMaskNameChangeWindow : FancyWindow
                 continue;
 
             var groupButton = CreateGroupButton(groupProto, jobGroupButtonGroup);
-            groupButton.OnPressed += _ => SetJobIcons(groupProto.Icons);
+            groupButton.OnPressed += _ => SelectGroup(groupProto);
 
             JobGroupGrid.AddChild(groupButton);
+            _groupButtons.Add((groupProto, groupButton));
+        }
+    }
 
-            firstGroupButton ??= groupButton;
-            firstGroupIcons ??= groupProto.Icons;
+    private void SelectGroup(JobIconGroupPrototype groupProto)
+    {
+        _selectedGroupId = groupProto.ID;
+        foreach (var (proto, button) in _groupButtons)
+        {
+            button.Pressed = proto.ID == groupProto.ID;
+        }
+        SetJobIcons(groupProto.Icons);
+    }
 
-            if (_currentJobIcon != null && matchingGroupButton == null && groupProto.Icons.Contains(_currentJobIcon.Value))
+    private void SyncSelectedGroup(ProtoId<JobIconPrototype>? currentIcon, bool iconChanged)
+    {
+        if (_groupButtons.Count == 0)
+            return;
+
+        // If icon didn't change and we already have a selection, keep current selection
+        if (!iconChanged && _selectedGroupId != null)
+            return;
+
+        // If an icon is set, try to find the group containing it
+        if (currentIcon != null)
+        {
+            var match = _groupButtons.FirstOrDefault(g => g.Proto.Icons.Contains(currentIcon.Value));
+            if (match.Proto != null)
             {
-                matchingGroupButton = groupButton;
-                matchingGroupIcons = groupProto.Icons;
+                SelectGroup(match.Proto);
+                return;
             }
         }
 
-        var selectedButton = matchingGroupButton ?? firstGroupButton;
-        var selectedIcons = matchingGroupIcons ?? firstGroupIcons;
-
-        if (selectedButton != null && selectedIcons != null)
+        // If nothing was selected yet, select the first group
+        if (_selectedGroupId == null && _groupButtons.Count > 0)
         {
-            selectedButton.Pressed = true;
-            SetJobIcons(selectedIcons);
+            SelectGroup(_groupButtons[0].Proto);
         }
     }
 
@@ -256,6 +276,7 @@ public sealed partial class VoiceMaskNameChangeWindow : FancyWindow
         // Corvax-TTS-End
 
         // NH-Add-Start (Radio job icons)
+        var iconChanged = _currentJobIcon != jobIcon;
         _currentJobIcon = jobIcon;
         if (jobIcon != null && _prototypeManager.TryIndex(jobIcon.Value, out var jobIconProto))
         {
@@ -269,6 +290,8 @@ public sealed partial class VoiceMaskNameChangeWindow : FancyWindow
             CurrentJobIconLabel.Text = Loc.GetString("chat-speech-verb-name-none");
             CurrentJobIcon.Visible = false;
         }
+
+        SyncSelectedGroup(jobIcon, iconChanged);
         // NH-Add-End
     }
 }
