@@ -2,14 +2,14 @@
 lobbyenabled = true
 lobbyduration = 300
 role_timers = true
-# contraband_examine = false
+contraband_examine = false # Pending space law and contra revision, set to true when ready
 contraband_examine_only_in_hud = true
 maxplayers = 60
 soft_max_players = 50
 map_rotation = true
 admin_job_tracking = true
-# maxcharacterslots = 20 # should be more for sponsors and whitelisted
-# map_pool = NewHorizonsMapPool
+# maxcharacterslots = 20 # Should be more for sponsors and whitelisted
+map_pool = "CorvaxMapPool" # Use "NewHorizonsMapPool" when ready
 # fallbackpreset = "extended"
 # usepersistence = true # For persistent events only
 # cryo_sleep_rejoining = true # For persistent events only
@@ -33,17 +33,18 @@ lobby_name = "️SS14 New Horizons"
 # rules_file = "NewHorizonsRuleset"
 
 [atmos]
-# space_wind = true
-# grid_impulse = true
+# space_wind = true # May cause performance issues, pls exercise caution when enabling
+# grid_impulse = true # May cause performance issues, pls exercise caution when enabling
 space_wind_max_velocity = 22.0
 max_explosion_range = 20.0
 
 [movement]
-# mob_pushing = true
+# mob_pushing = true # Set to true when we refactor it to work only in combat mode
 minimum_push = 0.05
 
 [shuttle]
 emergency_early_launch_allowed = true
+# arrivals = false # Set to false when we implement off-station NH gameplay
 arrivals_map = "/Maps/Corvax/Misc/corvax_terminal.yml"
 auto_call_time = 0
 auto_call_extension_time = 60
