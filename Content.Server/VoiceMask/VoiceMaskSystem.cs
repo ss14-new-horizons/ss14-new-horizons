@@ -12,11 +12,13 @@ using Content.Shared.Lock;
 using Content.Shared.Popups;
 using Content.Shared.Speech;
 using Content.Shared.Speech.EntitySystems;
-using Content.Shared.StatusIcon; // NH-Add (Radio job icons)
 using Content.Shared.VoiceMask;
 using Robust.Shared.Configuration;
 using Robust.Shared.Containers;
-using Robust.Shared.Prototypes; // NH-Add (Radio job icons)
+// NH-Add-Start (Radio job icons)
+using Content.Shared.StatusIcon;
+using Robust.Shared.Prototypes;
+// NH-Add-End
 
 namespace Content.Server.VoiceMask;
 

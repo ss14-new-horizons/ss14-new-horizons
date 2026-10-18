@@ -1,7 +1,9 @@
 using Content.Shared.Inventory;
-using Content.Shared.StatusIcon; // NH-Add (Radio job icons)
-using Robust.Shared.Prototypes; // NH-Add (Radio job icons)
 using Robust.Shared.Serialization;
+// NH-Add-Start (Radio job icons)
+using Content.Shared.StatusIcon;
+using Robust.Shared.Prototypes;
+// NH-Add-End
 
 namespace Content.Shared.VoiceMask;
 
