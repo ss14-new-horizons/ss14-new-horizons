@@ -253,7 +253,7 @@ public sealed partial class VoiceMaskNameChangeWindow : FancyWindow
     }
     // NH-Add-End
 
-    public void UpdateState(string name, string? verb, bool active, bool accentHide, LocId titleText, string voice, ProtoId<JobIconPrototype>? jobIcon = null) // Corvax-TTS // NH-Edit (Radio job icons)
+    public void UpdateState(string name, string? verb, bool active, bool accentHide, LocId titleText, string voice, ProtoId<JobIconPrototype>? jobIcon = null) // Corvax-TTS // NH-Edit (Radio job icons: added ProtoId<JobIconPrototype>? jobIcon = null)
     {
         NameSelector.Text = name;
         _verb = verb;
