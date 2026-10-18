@@ -1,7 +1,7 @@
 <controls:FancyWindow xmlns="https://spacestation14.io"
                xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
                Title="{Loc 'voice-mask-name-change-window'}"
-               MinSize="550 360"> <!-- NH-Edit (Radio job icons) -->
+               MinSize="550 360"> <!-- NH-Tweak (Radio job icons: "5 30") -->
     <!-- NH-Edit-Start (Radio job icons) -->
     <BoxContainer Orientation="Vertical" Margin="8">
         <TabContainer Name="Tabs" VerticalExpand="True">
