@@ -1,11 +1,13 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
+using Content.Shared._NewHorizons.CCVar;
 using Content.Shared.StatusIcon;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.RichText;
+using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
@@ -13,6 +15,7 @@ namespace Content.Client._NewHorizons.UserInterface.RichText;
 
 public sealed partial class JobIconTag : IMarkupTagHandler
 {
+    [Dependency] private IConfigurationManager _cfg = default!;
     [Dependency] private IPrototypeManager _prototype = default!;
     [Dependency] private IEntityManager _entity = default!;
 
@@ -22,6 +25,9 @@ public sealed partial class JobIconTag : IMarkupTagHandler
     {
         control = null;
         if (node.Closing)
+            return false;
+
+        if (!_cfg.GetCVar(NewHorizonsCCVars.ChatShowJobIcons))
             return false;
 
         if (!node.Value.TryGetString(out var iconId) || string.IsNullOrWhiteSpace(iconId))
