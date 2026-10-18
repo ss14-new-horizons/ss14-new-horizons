@@ -1,4 +1,4 @@
-﻿using Content.Shared._Funkystation.CCVar;
+using Content.Shared._Funkystation.CCVar;
 using Content.Shared._Funkystation.DeathBlackout;
 using Content.Shared.Ghost.Systems;
 using Content.Shared.Mind.Components;
@@ -35,6 +35,9 @@ public sealed partial class DeathBlackoutSystem : EntitySystem
             return;
         }
 
+        if (args.OldMobState == MobState.Dead) // NH-Add (DeathBlackout: ignore redundant dead state transitions)
+            return;
+
         if (!_cfg.GetCVar(DeathBlackoutCVars.Enabled))
             return;
 
@@ -42,6 +45,7 @@ public sealed partial class DeathBlackoutSystem : EntitySystem
             return;
 
         var blackout = EnsureComp<DeathBlackoutComponent>(ent);
+        blackout.StartTime = _timing.CurTime; // NH-Add (DeathBlackout)
         blackout.EndTime = _timing.CurTime + TimeSpan.FromSeconds(_cfg.GetCVar(DeathBlackoutCVars.Duration));
         Dirty(ent, blackout);
     }

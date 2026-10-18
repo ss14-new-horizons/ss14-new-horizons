@@ -1,4 +1,4 @@
-﻿using Robust.Shared.GameStates;
+using Robust.Shared.GameStates;
 
 namespace Content.Shared._Funkystation.DeathBlackout;
 
@@ -8,6 +8,14 @@ namespace Content.Shared._Funkystation.DeathBlackout;
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState, UnsavedComponent]
 public sealed partial class DeathBlackoutComponent : Component
 {
+    // NH-Add-Start (DeathBlackout)
+    /// <summary>
+    /// time the death blackout was initiated
+    /// </summary>
+    [AutoNetworkedField]
+    public TimeSpan StartTime;
+    // NH-Add-End
+
     /// <summary>
     /// time the blackout ends at
     /// </summary>
