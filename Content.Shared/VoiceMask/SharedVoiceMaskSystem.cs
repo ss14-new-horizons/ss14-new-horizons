@@ -22,7 +22,7 @@ public sealed class VoiceMaskBuiState : BoundUserInterfaceState
     public readonly string TTSVoice; // Corvax-TTS
     public readonly ProtoId<JobIconPrototype>? JobIcon; // NH-Add (Radio job icons)
 
-    public VoiceMaskBuiState(string name, string? verb, bool active, bool accentHide, LocId titleText, string voice, ProtoId<JobIconPrototype>? jobIcon = null) // Corvax-TTS // NH-Edit (Radio job icons)
+    public VoiceMaskBuiState(string name, string? verb, bool active, bool accentHide, LocId titleText, string voice, ProtoId<JobIconPrototype>? jobIcon = null) // Corvax-TTS // NH-Edit (Radio job icons: added ProtoId<JobIconPrototype>? jobIcon = null)
     {
         Name = name;
         Verb = verb;
