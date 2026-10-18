@@ -225,7 +225,7 @@ public sealed partial class DeathBlackoutSystem : EntitySystem
             {
                 Gain = 1.0f,
                 DecayTime = 4.0f,
-                EchoTime = 0.28f,
+                EchoTime = 0.25f,
                 EchoDepth = 0.85f,
                 ReflectionsGain = 0.85f,
                 LateReverbGain = 1.3f,
@@ -292,25 +292,25 @@ public sealed partial class DeathBlackoutSystem : EntitySystem
             var elapsed = (float)(_timing.CurTime - blackout.StartTime).TotalSeconds;
             var echoDuration = _cfg.GetCVar(NewHorizonsCCVars.DeathBlackoutEchoDuration);
 
-            float gain;
+            float deathGain;
             if (elapsed < echoDuration)
             {
                 var progress = Math.Clamp(elapsed / echoDuration, 0f, 1f);
                 var fade = MathF.Pow(1f - progress, 2f);
-                gain = _cfg.GetCVar(CVars.AudioMasterVolume) * fade;
+                deathGain = _cfg.GetCVar(CVars.AudioMasterVolume) * fade;
             }
             else
             {
-                gain = 0f;
+                deathGain = 0f;
             }
 
             _muffled = true;
 
-            if (MathF.Abs(gain - _lastGain) < 0.001f)
+            if (MathF.Abs(deathGain - _lastGain) < 0.001f)
                 return;
 
-            _lastGain = gain;
-            _audio.SetMasterGain(gain);
+            _lastGain = deathGain;
+            _audio.SetMasterGain(deathGain);
             return;
         }
 
