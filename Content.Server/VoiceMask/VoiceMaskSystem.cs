@@ -311,7 +311,7 @@ public sealed partial class VoiceMaskSystem : EntitySystem
     private void UpdateUI(Entity<VoiceMaskComponent> entity)
     {
         if (_uiSystem.HasUi(entity, VoiceMaskUIKey.Key))
-            _uiSystem.SetUiState(entity.Owner, VoiceMaskUIKey.Key, new VoiceMaskBuiState(GetCurrentVoiceName(entity), entity.Comp.VoiceMaskSpeechVerb, entity.Comp.Active, entity.Comp.AccentHide, entity.Comp.TitleText, entity.Comp.VoiceId, entity.Comp.VoiceMaskJobIcon)); //entity.Comp.VoiceId Corvax-TTS // NH-Edit (Radio job icons)
+            _uiSystem.SetUiState(entity.Owner, VoiceMaskUIKey.Key, new VoiceMaskBuiState(GetCurrentVoiceName(entity), entity.Comp.VoiceMaskSpeechVerb, entity.Comp.Active, entity.Comp.AccentHide, entity.Comp.TitleText, entity.Comp.VoiceId, entity.Comp.VoiceMaskJobIcon)); //entity.Comp.VoiceId Corvax-TTS // NH-Edit (Radio job icons: added entity.Comp.VoiceMaskJobIcon)
     }
     #endregion
 
