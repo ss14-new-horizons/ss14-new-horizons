@@ -48,7 +48,7 @@ public sealed partial class BlindableSystem : EntitySystem
     /// </summary>
     /// <param name="blindable">The entity to update.</param>
     [PublicAPI]
-    public void UpdateIsBlind(Entity<BlindableComponent?> blindable)
+    public void UpdateIsBlind(Entity<BlindableComponent?> blindable, bool bypass = false) // NH-Edit (Starlight: Containers block vision. Added bypass option)
     {
         if (!Resolve(blindable, ref blindable.Comp, false))
             return;
@@ -56,7 +56,7 @@ public sealed partial class BlindableSystem : EntitySystem
         var old = blindable.Comp.IsBlind;
 
         // Don't bother raising an event if the eye is too damaged.
-        if (blindable.Comp.EyeDamage >= blindable.Comp.MaxDamage)
+        if ((blindable.Comp.EyeDamage >= blindable.Comp.MaxDamage) && !bypass) // NH-Edit (Starlight: Containers block vision. Added bypass option)
         {
             blindable.Comp.IsBlind = true;
         }
