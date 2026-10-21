@@ -1802,7 +1802,7 @@
         type: HealthAnalyzerBoundUserInterface
       enum.ChameleonUiKey.Key:
         type: ChameleonBoundUserInterface
-      # NH-Add-Start (Ganimed gas analyzer app)
+      # NH-Add-Start (Ganimed: gas analyzer app)
       enum.GasAnalyzerUiKey.Key:
         type: GasAnalyzerBoundUserInterface
       # NH-Add-End
