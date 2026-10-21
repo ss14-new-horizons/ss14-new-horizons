@@ -9,10 +9,8 @@
   description: A program that reports current gas levels in the environment.
   components:
   - type: Sprite
-    state: cart-y
-  - type: Icon
-    sprite: Objects/Devices/cartridge.rsi
-    state: cart-y
+    sprite: _NewHorizons/Objects/Devices/cartridge.rsi
+    state: cart-a
   - type: Cartridge
     programName: atmos-tek-program-name
     icon:
