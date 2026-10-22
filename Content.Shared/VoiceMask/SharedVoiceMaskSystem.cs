@@ -1,5 +1,9 @@
 using Content.Shared.Inventory;
 using Robust.Shared.Serialization;
+// NH-Add-Start (Radio job icons)
+using Content.Shared.StatusIcon;
+using Robust.Shared.Prototypes;
+// NH-Add-End
 
 namespace Content.Shared.VoiceMask;
 
@@ -18,8 +22,9 @@ public sealed class VoiceMaskBuiState : BoundUserInterfaceState
     public readonly bool AccentHide;
     public readonly LocId TitleText;
     public readonly string TTSVoice; // Corvax-TTS
+    public readonly ProtoId<JobIconPrototype>? JobIcon; // NH-Add (Radio job icons)
 
-    public VoiceMaskBuiState(string name, string? verb, bool active, bool accentHide, LocId titleText, string voice) // Corvax-TTS
+    public VoiceMaskBuiState(string name, string? verb, bool active, bool accentHide, LocId titleText, string voice, ProtoId<JobIconPrototype>? jobIcon = null) // Corvax-TTS // NH-Edit (Radio job icons: added ProtoId<JobIconPrototype>? jobIcon = null)
     {
         Name = name;
         Verb = verb;
@@ -27,6 +32,7 @@ public sealed class VoiceMaskBuiState : BoundUserInterfaceState
         AccentHide = accentHide;
         TitleText = titleText;
         TTSVoice = voice;  // Corvax-TTS
+        JobIcon = jobIcon; // NH-Add (Radio job icons)
     }
 }
 
@@ -54,6 +60,17 @@ public sealed class VoiceMaskChangeVerbMessage : BoundUserInterfaceMessage
         Verb = verb;
     }
 }
+
+// NH-Add-Start (Radio job icons)
+/// <summary>
+/// Change the job icon prototype to override, or null to reset/not override.
+/// </summary>
+[Serializable, NetSerializable]
+public sealed class VoiceMaskChangeJobIconMessage(ProtoId<JobIconPrototype>? icon) : BoundUserInterfaceMessage
+{
+    public readonly ProtoId<JobIconPrototype>? Icon = icon;
+}
+// NH-Add-End
 
 /// <summary>
 ///     Toggle the effects of the voice mask.
