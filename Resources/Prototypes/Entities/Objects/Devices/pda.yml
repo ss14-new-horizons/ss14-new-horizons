@@ -111,6 +111,10 @@
         type: InstrumentBoundUserInterface
       enum.HealthAnalyzerUiKey.Key:
         type: HealthAnalyzerBoundUserInterface
+      # NH-Add-Start (Ganimed: gas analyzer app)
+      enum.GasAnalyzerUiKey.Key:
+        type: GasAnalyzerBoundUserInterface
+      # NH-Add-End
   - type: RemoteStore # PDAs can access uplinks so they need this component.
   - type: Tag
     tags:
@@ -771,6 +775,17 @@
     accentHColor: "#447987"
   - type: Icon
     state: pda-ce
+  # NH-Add-Start (Ganimed: gas analyzer app)
+  - type: EntityTableContainerFill
+    containers:
+      preinstalled-program-container: !type:AllSelector
+        children:
+        - id: CrewManifestCartridge
+        - id: NotekeeperCartridge
+        - id: NanoTaskCartridge
+        - id: NewsReaderCartridge
+        - id: AtmosTekCartridge # NH-Add (Ganimed: gas analyzer app)
+  # NH-Add-End
 
 - type: entity
   parent: [BaseCorvaxContraband431JobsStationEngineer, BasePDA] # Corvax-Contraband
@@ -1056,6 +1071,7 @@
         - id: WantedListCartridge
         - id: MedTekCartridge
         - id: AstroNavCartridge
+        - id: AtmosTekCartridge # NH-Add (Ganimed: gas analyzer app)
   - type: Tag #  Ignore Chameleon tags
     tags:
     - DoorBumpOpener
@@ -1135,6 +1151,17 @@
     accentVColor: "#447987"
   - type: Icon
     state: pda-atmos
+  # NH-Add-Start (Ganimed: gas analyzer app)
+  - type: EntityTableContainerFill
+    containers:
+      preinstalled-program-container: !type:AllSelector
+        children:
+        - id: CrewManifestCartridge
+        - id: NotekeeperCartridge
+        - id: NanoTaskCartridge
+        - id: NewsReaderCartridge
+        - id: AtmosTekCartridge # NH-Add (Ganimed: gas analyzer app)
+  # NH-Add-End
 
 - type: entity
   parent: BasePDA
@@ -1290,6 +1317,7 @@
         - id: WantedListCartridge
         - id: LogProbeCartridge
         - id: AstroNavCartridge
+        - id: AtmosTekCartridge # NH-Add (Ganimed: gas analyzer app)
 
 - type: entity
   parent: ERTLeaderPDA
@@ -1604,6 +1632,17 @@
     accentVColor: "#CD6900"
   - type: Icon
     state: pda-seniorengineer
+  # NH-Add-Start (Ganimed: gas analyzer app)
+  - type: EntityTableContainerFill
+    containers:
+      preinstalled-program-container: !type:AllSelector
+        children:
+        - id: CrewManifestCartridge
+        - id: NotekeeperCartridge
+        - id: NanoTaskCartridge
+        - id: NewsReaderCartridge
+        - id: AtmosTekCartridge # NH-Add (Ganimed: gas analyzer app)
+  # NH-Add-End
 
 - type: entity
   parent: BasePDA
@@ -1763,6 +1802,10 @@
         type: HealthAnalyzerBoundUserInterface
       enum.ChameleonUiKey.Key:
         type: ChameleonBoundUserInterface
+      # NH-Add-Start (Ganimed: gas analyzer app)
+      enum.GasAnalyzerUiKey.Key:
+        type: GasAnalyzerBoundUserInterface
+      # NH-Add-End
 
 - type: entity
   parent: ChameleonPDA
