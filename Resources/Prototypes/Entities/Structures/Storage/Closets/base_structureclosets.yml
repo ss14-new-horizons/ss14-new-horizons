@@ -75,6 +75,7 @@
     stateDoorClosed: generic_door
   - type: StaticPrice
     price: 75
+  - type: ChildBlockVision # NH-Add (Starlight: Containers block vision)
 
 # steel closet base (that can be constructed/deconstructed)
 - type: entity
@@ -180,6 +181,7 @@
         density: 5
         mask:
         - FullTileMask
+  - type: ChildBlockVision # NH-Add (Starlight: Containers block vision)
 
 #Wall locker
 - type: entity
@@ -296,3 +298,4 @@
     stateDoorOpen: base
     stateDoorClosed: door
   - type: LockVisuals
+  - type: ChildBlockVision # NH-Add (Starlight: Containers block vision)
