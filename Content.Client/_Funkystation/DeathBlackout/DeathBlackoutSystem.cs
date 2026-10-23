@@ -73,14 +73,7 @@ public sealed partial class DeathBlackoutSystem : EntitySystem
         {
             if (audioComp.LifeStage >= ComponentLifeStage.Initialized && audioComp.LifeStage < ComponentLifeStage.Stopping)
             {
-                try
-                {
-                    audioComp.Volume = audioComp.Params.Volume;
-                }
-                catch
-                {
-                    // Ignore
-                }
+                audioComp.Volume = audioComp.Params.Volume;
             }
         }
         // NH-Add-End
@@ -299,14 +292,7 @@ public sealed partial class DeathBlackoutSystem : EntitySystem
                         string fileName = audioComp.FileName;
                         if (fileName.Contains("gasp", StringComparison.OrdinalIgnoreCase))
                         {
-                            try
-                            {
-                                audioComp.StopPlaying();
-                            }
-                            catch
-                            {
-                                // Ignore
-                            }
+                            audioComp.StopPlaying();
                         }
                     }
                 }
@@ -320,14 +306,7 @@ public sealed partial class DeathBlackoutSystem : EntitySystem
                         string fileName = audioComp.FileName;
                         if (fileName.Contains("gasp", StringComparison.OrdinalIgnoreCase))
                         {
-                            try
-                            {
-                                audioComp.StopPlaying();
-                            }
-                            catch
-                            {
-                                // Ignore
-                            }
+                            audioComp.StopPlaying();
                             continue;
                         }
 
@@ -346,14 +325,7 @@ public sealed partial class DeathBlackoutSystem : EntitySystem
                         string fileName = audioComp.FileName;
                         if (fileName.Contains("gasp", StringComparison.OrdinalIgnoreCase))
                         {
-                            try
-                            {
-                                audioComp.StopPlaying();
-                            }
-                            catch
-                            {
-                                // Ignore
-                            }
+                            audioComp.StopPlaying();
                             continue;
                         }
 
@@ -376,27 +348,13 @@ public sealed partial class DeathBlackoutSystem : EntitySystem
                 string fileName = audioComp.FileName;
                 if (fileName.Contains("gasp", StringComparison.OrdinalIgnoreCase))
                 {
-                    try
-                    {
-                        audioComp.StopPlaying();
-                    }
-                    catch
-                    {
-                        // Ignore
-                    }
+                    audioComp.StopPlaying();
                     continue;
                 }
 
                 if (_diedFromCrit || !_deathAudioEntities.Contains(uid))
                 {
-                    try
-                    {
-                        audioComp.Gain = 0f;
-                    }
-                    catch
-                    {
-                        // Ignore
-                    }
+                    audioComp.Gain = 0f;
                 }
             }
 
@@ -444,14 +402,7 @@ public sealed partial class DeathBlackoutSystem : EntitySystem
             {
                 if (audioComp.LifeStage >= ComponentLifeStage.Initialized && audioComp.LifeStage < ComponentLifeStage.Stopping)
                 {
-                    try
-                    {
-                        audioComp.Volume = audioComp.Params.Volume;
-                    }
-                    catch
-                    {
-                        // Ignore
-                    }
+                    audioComp.Volume = audioComp.Params.Volume;
                 }
             }
         }
