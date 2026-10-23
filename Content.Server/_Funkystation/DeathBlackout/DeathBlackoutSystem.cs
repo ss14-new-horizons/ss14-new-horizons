@@ -1,14 +1,16 @@
 using Content.Shared._Funkystation.CCVar;
 using Content.Shared._Funkystation.DeathBlackout;
-using Content.Shared.Body;
-using Content.Shared.Body.Components;
 using Content.Shared.Ghost.Systems;
-using Content.Shared.Gibbing;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mobs;
-using Content.Shared.Mobs.Components;
 using Robust.Shared.Configuration;
 using Robust.Shared.Timing;
+// NH-Add-Start (DeathBlackout)
+using Content.Shared.Body;
+using Content.Shared.Body.Components;
+using Content.Shared.Gibbing;
+using Content.Shared.Mobs.Components;
+// NH-Add-End
 
 namespace Content.Server._Funkystation.DeathBlackout;
 
@@ -36,12 +38,15 @@ public sealed partial class DeathBlackoutSystem : EntitySystem
         if (args.OldMobState == MobState.Dead) // NH-Add (DeathBlackout: ignore redundant dead state transitions)
             return;
 
+        // NH-Edit-Start (DeathBlackout: factored out to ApplyDeathBlackout)
         if (!TryComp<MindContainerComponent>(ent, out var mindContainer) || !mindContainer.HasMind)
             return;
 
         ApplyDeathBlackout(ent);
+        // NH-Edit-End
     }
 
+    // NH-Add-Start (DeathBlackout: apply blackout when gibbed)
     [SubscribeLocalEvent]
     private void OnBeingGibbed(Entity<BrainComponent> ent, ref BodyRelayedEvent<BeingGibbedEvent> relayedEvent)
     {
@@ -61,10 +66,11 @@ public sealed partial class DeathBlackoutSystem : EntitySystem
             return;
 
         var blackout = EnsureComp<DeathBlackoutComponent>(ent);
-        blackout.StartTime = _timing.CurTime; // NH-Add (DeathBlackout)
+        blackout.StartTime = _timing.CurTime;
         blackout.EndTime = _timing.CurTime + TimeSpan.FromSeconds(_cfg.GetCVar(DeathBlackoutCVars.Duration));
         Dirty(ent, blackout);
     }
+    // NH-Add-End
 
     // no ghosting until the blackout is over. you're COMPROMISING my CINEMATIC VISION
     [SubscribeLocalEvent]
