@@ -230,7 +230,7 @@ public sealed partial class DeathBlackoutSystem : EntitySystem
     {
         string fileName = audioComp.FileName;
 
-        // Только голосовой предсмертный хрип и звуки голоса персонажа (deathgasp, стоны, эмоуты)
+        // only the vocal death rattle and the sounds of the character's voice (deathgasp, emotes) reinsurance just in case
         if (fileName.Contains("gasp", StringComparison.OrdinalIgnoreCase) ||
             fileName.Contains("/Voice/", StringComparison.OrdinalIgnoreCase) ||
             fileName.Contains("/Emotes/", StringComparison.OrdinalIgnoreCase))
@@ -238,7 +238,7 @@ public sealed partial class DeathBlackoutSystem : EntitySystem
             return true;
         }
 
-        // Звуки окружения (фоновый шум станции, зацикленные звуки машин/вентиляции/эмбиента)
+        // ambient sounds (station background noise, looping sounds of machinery/ventilation/ambient)
         var audioParams = audioComp.Params;
         if (audioParams.Loop)
             return true;
