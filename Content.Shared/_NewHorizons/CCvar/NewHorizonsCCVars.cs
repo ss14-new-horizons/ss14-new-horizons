@@ -17,12 +17,6 @@ public sealed partial class NewHorizonsCCVars : CVars
      */
 
     /// <summary>
-    /// Delay before death blackout appears on death in seconds.
-    /// </summary>
-    public static readonly CVarDef<float> DeathBlackoutDelay =
-        CVarDef.Create("nh.death_blackout.delay", 0.45f, CVar.SERVER | CVar.REPLICATED | CVar.ARCHIVE);
-
-    /// <summary>
     /// How long existing sounds continue echoing and fade out after death in seconds.
     /// </summary>
     public static readonly CVarDef<float> DeathBlackoutEchoDuration =

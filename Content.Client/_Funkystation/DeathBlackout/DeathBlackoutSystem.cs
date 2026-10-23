@@ -15,8 +15,8 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Timing;
 // NH-Add-Start (DeathBlackout)
 using Content.Shared._NewHorizons.CCVar;
+using Content.Shared.Audio;
 using Robust.Shared.Audio.Components;
-using Robust.Shared.Audio.Effects;
 // NH-Add-End
 
 namespace Content.Client._Funkystation.DeathBlackout;
@@ -36,19 +36,11 @@ public sealed partial class DeathBlackoutSystem : EntitySystem
     [Dependency] private EntityQuery<MobStateComponent> _mobStateQuery;
     [Dependency] private EntityQuery<MobThresholdsComponent> _thresholdsQuery;
     // NH-Add-Start (DeathBlackout)
-    [Dependency] private AudioSystem _audioSystem = null!;
-
-    private ISawmill _sawmill = default!;
     private bool _wasDead;
+    private bool _wasInCrit;
+    private bool _diedFromCrit;
+    private TimeSpan _deathStartTime;
     private readonly HashSet<EntityUid> _deathAudioEntities = new();
-    private EntityUid? _auxEntity;
-    private EntityUid? _effectEntity;
-
-    public override void Initialize()
-    {
-        base.Initialize();
-        _sawmill = Logger.GetSawmill("death_blackout");
-    }
     // NH-Add-End
 
     // how fast the crit fade catches up with the damage value
@@ -60,15 +52,37 @@ public sealed partial class DeathBlackoutSystem : EntitySystem
     private float _lastGain = -1f;
     private bool _muffled;
 
+    // NH-Add-Start (DeathBlackout: ensure blackout audio update runs after engine audio system)
+    public override void Initialize()
+    {
+        base.Initialize();
+        UpdatesAfter.Add(typeof(AudioSystem));
+    }
+    // NH-Add-End
+
     public override void Shutdown()
     {
         base.Shutdown();
 
         RestoreAudio();
 
-        // NH-Add-Start (DeathBlackout)
-        CleanupAuxiliary();
+        // NH-Add-Start (DeathBlackout: restore audio volumes and clear death tracking)
         _deathAudioEntities.Clear();
+        var restoreQuery = AllEntityQuery<AudioComponent>();
+        while (restoreQuery.MoveNext(out var uid, out var audioComp))
+        {
+            if (audioComp.LifeStage >= ComponentLifeStage.Initialized && audioComp.LifeStage < ComponentLifeStage.Stopping)
+            {
+                try
+                {
+                    audioComp.Volume = audioComp.Params.Volume;
+                }
+                catch
+                {
+                    // Ignore
+                }
+            }
+        }
         // NH-Add-End
 
         _panel?.Orphan();
@@ -78,6 +92,17 @@ public sealed partial class DeathBlackoutSystem : EntitySystem
     public override void FrameUpdate(float frameTime)
     {
         base.FrameUpdate(frameTime);
+
+        // NH-Add-Start (DeathBlackout: track whether player was in critical state before dying)
+        if (_player.LocalEntity is { } localPlayer &&
+            _mobStateQuery.TryComp(localPlayer, out var localMobState))
+        {
+            if (localMobState.CurrentState == MobState.Critical)
+                _wasInCrit = true;
+            else if (localMobState.CurrentState == MobState.Alive)
+                _wasInCrit = false;
+        }
+        // NH-Add-End
 
         var blackout = IsBlackout();
         var target = blackout ? 1f : GetCritFadeTarget();
@@ -113,35 +138,33 @@ public sealed partial class DeathBlackoutSystem : EntitySystem
         UpdateAudio();
     }
 
-    // true while player is dead and within blackout duration window
-    private bool IsDeadWithBlackout(out DeathBlackoutComponent? blackout) // NH-Edit (IsBlackout() -> IsDeadWithBlackout(out DeathBlackoutComponent? blackout))
+    // true while the player is inside the post death blackout window
+    // NH-Edit-Start (DeathBlackout: support out blackout component and seamless transition without split-second flicker)
+    private bool IsBlackout(out DeathBlackoutComponent? blackout)
     {
-        blackout = null; // NH-Add (DeathBlackout)
+        blackout = null;
         if (!_cfg.GetCVar(DeathBlackoutCVars.Enabled))
             return false;
 
         if (_player.LocalEntity is not { } player)
             return false;
 
-    // NH-Add-Start
-        if (_blackoutQuery.TryComp(player, out blackout) && _timing.CurTime < blackout.EndTime)
+        if (_blackoutQuery.TryComp(player, out blackout))
+            return _timing.CurTime < blackout.EndTime;
+
+        // If DeathBlackoutComponent has not arrived from server yet (e.g. during client prediction tick),
+        // but the player is already dead, maintain blackout so there is no split-second flicker.
+        if (_mobStateQuery.TryComp(player, out var mobState) && mobState.CurrentState == MobState.Dead)
             return true;
 
         return false;
     }
-    // NH-Add-End
 
-    // true while the player is inside the post death blackout window
     private bool IsBlackout()
     {
-        // NH-Edit-Start (DeathBlackout: delay blackout appearance by configured duration)
-        if (!IsDeadWithBlackout(out var blackout) || blackout == null)
-            return false;
-
-        var delay = TimeSpan.FromSeconds(_cfg.GetCVar(NewHorizonsCCVars.DeathBlackoutDelay));
-        return _timing.CurTime >= blackout.StartTime + delay;
-        // NH-Edit-End
+        return IsBlackout(out _);
     }
+    // NH-Edit-End
 
     // 0 to 1 progress through hard crit towards death
     private float GetCritFadeTarget()
@@ -209,99 +232,194 @@ public sealed partial class DeathBlackoutSystem : EntitySystem
         _panel.Modulate = Color.White.WithAlpha(_level);
     }
 
-    // NH-Add-Start (DeathBlackout)
-    private void EnsureEchoAuxiliary()
+    // NH-Add-Start (DeathBlackout: filter out death rattle and environmental/ambient sounds)
+    private bool IsSuppressedDeathAudio(EntityUid uid, AudioComponent audioComp, EntityUid? player, TransformComponent? xform)
     {
-        if (_auxEntity != null && !TerminatingOrDeleted(_auxEntity.Value))
-            return;
+        string fileName = audioComp.FileName;
 
-        try
+        // Только голосовой предсмертный хрип и звуки голоса персонажа (deathgasp, стоны, эмоуты)
+        if (fileName.Contains("gasp", StringComparison.OrdinalIgnoreCase) ||
+            fileName.Contains("/Voice/", StringComparison.OrdinalIgnoreCase) ||
+            fileName.Contains("/Emotes/", StringComparison.OrdinalIgnoreCase))
         {
-            var (auxEnt, auxComp) = _audioSystem.CreateAuxiliary();
-            var (effectEnt, effectComp) = _audioSystem.CreateEffect();
-            _audioSystem.SetEffect(auxEnt, auxComp, effectEnt);
-
-            var echoPreset = ReverbPresets.Generic with
-            {
-                Gain = 1.0f,
-                DecayTime = 4.0f,
-                EchoTime = 0.25f,
-                EchoDepth = 0.85f,
-                ReflectionsGain = 0.85f,
-                LateReverbGain = 1.3f,
-            };
-            _audioSystem.SetEffectPreset(effectEnt, effectComp, echoPreset);
-
-            _auxEntity = auxEnt;
-            _effectEntity = effectEnt;
+            return true;
         }
-        catch (Exception ex)
+
+        // Звуки окружения (фоновый шум станции, зацикленные звуки машин/вентиляции/эмбиента)
+        var audioParams = audioComp.Params;
+        if (audioParams.Loop)
+            return true;
+
+        if (fileName.Contains("ambience", StringComparison.OrdinalIgnoreCase) ||
+            fileName.Contains("ambient", StringComparison.OrdinalIgnoreCase))
         {
-            _sawmill.Warning($"Failed to initialize death blackout audio echo auxiliary: {ex.Message}");
-            _auxEntity = null;
-            _effectEntity = null;
+            return true;
         }
-    }
 
-    private void CleanupAuxiliary()
-    {
-        if (_effectEntity != null && !TerminatingOrDeleted(_effectEntity.Value))
-        {
-            _audioSystem.Stop(_effectEntity);
-            Del(_effectEntity.Value);
-        }
-        _effectEntity = null;
+        if (HasComp<AmbientSoundComponent>(uid))
+            return true;
 
-        if (_auxEntity != null && !TerminatingOrDeleted(_auxEntity.Value))
+        if (xform != null)
         {
-            if (TryComp<AudioAuxiliaryComponent>(_auxEntity.Value, out var auxComp))
-            {
-                auxComp.Auxiliary?.SetEffect(null);
-                auxComp.Auxiliary?.Dispose();
-            }
-            Del(_auxEntity.Value);
+            if (HasComp<AmbientSoundComponent>(xform.ParentUid))
+                return true;
         }
-        _auxEntity = null;
+        else if (TryComp(uid, out TransformComponent? xf))
+        {
+            if (HasComp<AmbientSoundComponent>(xf.ParentUid))
+                return true;
+        }
+
+        return false;
     }
     // NH-Add-End
 
     // scales master gain down with the level
     private void UpdateAudio()
     {
-        // NH-Add-Start (DeathBlackout)
-        var isDead = IsDeadWithBlackout(out var blackout);
+        // NH-Add-Start (DeathBlackout: death audio handling with echo, crit silence, and graceful fade restoration)
+        var isDead = IsBlackout(out _);
 
-        if (isDead && blackout != null)
+        if (isDead)
         {
             if (!_wasDead)
             {
                 _wasDead = true;
+                _diedFromCrit = _wasInCrit;
+                _deathStartTime = _timing.CurTime;
                 _deathAudioEntities.Clear();
 
-                EnsureEchoAuxiliary();
-
-                var query = AllEntityQuery<AudioComponent>();
-                while (query.MoveNext(out var uid, out var audioComp))
+                if (_diedFromCrit)
                 {
-                    _deathAudioEntities.Add(uid);
-                    if (_auxEntity != null)
-                        _audioSystem.SetAuxiliary(uid, audioComp, _auxEntity);
+                    // If dying while already in critical state, sounds must NOT echo.
+                    // Stop deathgasp immediately.
+                    var gaspQuery = AllEntityQuery<AudioComponent>();
+                    while (gaspQuery.MoveNext(out var uid, out var audioComp))
+                    {
+                        string fileName = audioComp.FileName;
+                        if (fileName.Contains("gasp", StringComparison.OrdinalIgnoreCase))
+                        {
+                            try
+                            {
+                                audioComp.StopPlaying();
+                            }
+                            catch
+                            {
+                                // Ignore
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    // Sudden death: preserve non-suppressed action audio to continue and fade out
+                    var player = _player.LocalEntity;
+                    var query = AllEntityQuery<AudioComponent, TransformComponent>();
+                    while (query.MoveNext(out var uid, out var audioComp, out var xform))
+                    {
+                        string fileName = audioComp.FileName;
+                        if (fileName.Contains("gasp", StringComparison.OrdinalIgnoreCase))
+                        {
+                            try
+                            {
+                                audioComp.StopPlaying();
+                            }
+                            catch
+                            {
+                                // Ignore
+                            }
+                            continue;
+                        }
+
+                        if (IsSuppressedDeathAudio(uid, audioComp, player, xform))
+                            continue;
+
+                        _deathAudioEntities.Add(uid);
+                    }
+
+                    var globalQuery = AllEntityQuery<AudioComponent>();
+                    while (globalQuery.MoveNext(out var uid, out var audioComp))
+                    {
+                        if (_deathAudioEntities.Contains(uid))
+                            continue;
+
+                        string fileName = audioComp.FileName;
+                        if (fileName.Contains("gasp", StringComparison.OrdinalIgnoreCase))
+                        {
+                            try
+                            {
+                                audioComp.StopPlaying();
+                            }
+                            catch
+                            {
+                                // Ignore
+                            }
+                            continue;
+                        }
+
+                        if (IsSuppressedDeathAudio(uid, audioComp, player, null))
+                            continue;
+
+                        _deathAudioEntities.Add(uid);
+                    }
                 }
             }
 
-            var elapsed = (float)(_timing.CurTime - blackout.StartTime).TotalSeconds;
-            var echoDuration = _cfg.GetCVar(NewHorizonsCCVars.DeathBlackoutEchoDuration);
+            // During blackout, mute deathgasp and any audio that is not part of the sudden death echo.
+            // (We set Gain = 0f instead of StopPlaying so continuing/ambient sounds are not permanently destroyed)
+            var allQuery = AllEntityQuery<AudioComponent>();
+            while (allQuery.MoveNext(out var uid, out var audioComp))
+            {
+                if (audioComp.LifeStage < ComponentLifeStage.Initialized || audioComp.LifeStage >= ComponentLifeStage.Stopping)
+                    continue;
+
+                string fileName = audioComp.FileName;
+                if (fileName.Contains("gasp", StringComparison.OrdinalIgnoreCase))
+                {
+                    try
+                    {
+                        audioComp.StopPlaying();
+                    }
+                    catch
+                    {
+                        // Ignore
+                    }
+                    continue;
+                }
+
+                if (_diedFromCrit || !_deathAudioEntities.Contains(uid))
+                {
+                    try
+                    {
+                        audioComp.Gain = 0f;
+                    }
+                    catch
+                    {
+                        // Ignore
+                    }
+                }
+            }
 
             float deathGain;
-            if (elapsed < echoDuration)
+            if (_diedFromCrit)
             {
-                var progress = Math.Clamp(elapsed / echoDuration, 0f, 1f);
-                var fade = MathF.Pow(1f - progress, 2f);
-                deathGain = _cfg.GetCVar(CVars.AudioMasterVolume) * fade;
+                deathGain = 0f;
             }
             else
             {
-                deathGain = 0f;
+                var elapsed = (float)(_timing.CurTime - _deathStartTime).TotalSeconds;
+                var echoDuration = _cfg.GetCVar(NewHorizonsCCVars.DeathBlackoutEchoDuration);
+
+                if (elapsed < echoDuration)
+                {
+                    var progress = Math.Clamp(elapsed / echoDuration, 0f, 1f);
+                    var fade = MathF.Pow(1f - progress, 2f);
+                    deathGain = _cfg.GetCVar(CVars.AudioMasterVolume) * fade;
+                }
+                else
+                {
+                    deathGain = 0f;
+                }
             }
 
             _muffled = true;
@@ -317,8 +435,25 @@ public sealed partial class DeathBlackoutSystem : EntitySystem
         if (_wasDead)
         {
             _wasDead = false;
+            _diedFromCrit = false;
             _deathAudioEntities.Clear();
-            CleanupAuxiliary();
+
+            // Un-mute all audio components that were muted during blackout
+            var restoreQuery = AllEntityQuery<AudioComponent>();
+            while (restoreQuery.MoveNext(out var uid, out var audioComp))
+            {
+                if (audioComp.LifeStage >= ComponentLifeStage.Initialized && audioComp.LifeStage < ComponentLifeStage.Stopping)
+                {
+                    try
+                    {
+                        audioComp.Volume = audioComp.Params.Volume;
+                    }
+                    catch
+                    {
+                        // Ignore
+                    }
+                }
+            }
         }
         // NH-Add-End
 
