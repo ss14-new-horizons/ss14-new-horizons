@@ -33,7 +33,7 @@
   - type: AmmoCounter
 
 - type: entity
-  parent: [BaseWeaponBattery, BaseGunWieldable]
+  parent: [BaseWeaponBattery, BaseGunWieldableBattery] # NH-Edit (BaseGunWieldable -> BaseGunWieldableBattery)
   id: BaseLaserRifle
   abstract: true
   components:
@@ -60,7 +60,7 @@
     - SemiAuto
   - type: BatteryAmmoProvider
     proto: RedLaser
-    fireCost: 62.5
+    fireCost: 50 # NH-Tweak (62.5)
   - type: StaticPrice
     price: 420
   - type: Tag
@@ -276,13 +276,13 @@
 
 - type: entity
   name: laser carbine
-  parent: [BaseCorvaxContraband434DepartmentsSecurity, BaseLaserRifle, BaseGunWieldable, BaseSecurityContraband] # Corvax-Contraband
+  parent: [BaseCorvaxContraband434DepartmentsSecurity, BaseLaserRifle, BaseSecurityContraband] # Corvax-Contraband # NH-Edit (remove BaseGunWieldable)
   id: WeaponLaserCarbine
   description: Favoured by Nanotrasen Security for being cheap and easy to use.
 
 - type: entity
   name: practice laser carbine
-  parent: [BaseLaserRifle, BaseGunWieldable]
+  parent: [BaseLaserRifle] # NH-Edit (remove BaseGunWieldable)
   id: WeaponLaserCarbinePractice
   description: This modified laser carbine fires nearly harmless beams in the 40-watt range, for target practice.
   components:
@@ -438,7 +438,7 @@
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
   - type: BatteryAmmoProvider
     proto: RedHeavyLaser
-    fireCost: 100
+    fireCost: 80 # NH-Tweak (100)
   - type: Tag
     tags:
     - TurretCompatibleWeapon

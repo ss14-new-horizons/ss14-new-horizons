@@ -19,6 +19,10 @@
   - type: Clothing
     slots:
     - outerClothing
+    # NH-Add-Start
+    equipDelay: 0.5
+    unequipDelay: 0.5
+    # NH-Add-End
   - type: ClothingSpeedModifier
     walkModifier: 0.9
     sprintModifier: 0.9
@@ -68,6 +72,7 @@
   components:
   - type: Edible
     requiresSpecialDigestion: true
+    delay: 2 # NH-Add
   - type: Solution
     solution:
       reagents:
@@ -141,8 +146,10 @@
   name: base EVA Suit
   components:
 # SlotBlocker blocked until UI change
-#  - type: SlotBlock
-#    slots: [innerclothing, feet]
+  # NH-Edit-Start (uncommented SlotBlock)
+  - type: SlotBlock
+    slots: [innerclothing, feet, gloves]
+  # NH-Edit-End
   - type: PressureProtection
     highPressureMultiplier: 0.6
     lowPressureMultiplier: 1000
@@ -159,6 +166,11 @@
   - type: HideLayerClothing
     slots:
     - Tail
+  # NH-Add-Start
+  - type: Clothing
+    equipDelay: 1
+    unequipDelay: 1
+  # NH-Add-End
 
 - type: entity
   abstract: true

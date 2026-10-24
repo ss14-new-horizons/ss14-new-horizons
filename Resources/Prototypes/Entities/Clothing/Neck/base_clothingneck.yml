@@ -20,6 +20,7 @@
       Cloth: 100
   - type: Edible
     requiresSpecialDigestion: true
+    delay: 2 # NH-Add
   - type: Solution
     solution:
       reagents:

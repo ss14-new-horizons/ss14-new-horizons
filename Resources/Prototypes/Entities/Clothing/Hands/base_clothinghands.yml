@@ -9,6 +9,7 @@
     slots: [gloves]
   - type: Edible
     requiresSpecialDigestion: true
+    delay: 2 # NH-Add
   - type: Item
     size: Small
     storedRotation: -90

@@ -98,6 +98,7 @@
   - type: Edible
     requiresSpecialDigestion: true
     solution: composite
+    delay: 2 # NH-Add
   - type: FlavorProfile
     flavors:
     - fiber
@@ -166,6 +167,7 @@
   - type: Edible
     requiresSpecialDigestion: true
     solution: composite
+    delay: 2 # NH-Add
   - type: Solution
     solution:
       maxVol: 20
