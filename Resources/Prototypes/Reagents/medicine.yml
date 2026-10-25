@@ -1022,9 +1022,10 @@
       effects:
       - !type:ModifyStatusEffect
         effectProto: StatusEffectDrowsiness
-        time: 10
+        time: 15 # NH-Tweak (Buff from default 10)
         type: Remove
       - !type:ResetNarcolepsy
+        TimerReset: 1000 # NH-Add (Buff from default 600)
         conditions:
         - !type:ReagentCondition
           reagent: Diphenylmethylamine
