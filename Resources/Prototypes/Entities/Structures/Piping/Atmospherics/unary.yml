@@ -20,6 +20,10 @@
           pipeDirection: South
     - type: CollideOnAnchor
     - type: SandboxCopyable
+    # NH-Add-Start (Starlight: Containers block vision)
+    - type: ChildBlockVision
+      enabled: false
+    # NH-Add-End
 
 - type: entity
   parent: [GasUnaryBase, AirSensorBase]
