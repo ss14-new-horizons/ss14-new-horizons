@@ -4,6 +4,7 @@
   keycode: ";"
   frequency: 145.9
   color: "#2cdb2c"
+  headsetTransmittable: false # NH-Add (Moffstation: Make common receive-only for headsets)
 
 - type: radioChannel
   id: CentCom
