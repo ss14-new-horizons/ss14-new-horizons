@@ -775,7 +775,7 @@
     accentHColor: "#447987"
   - type: Icon
     state: pda-ce
-  # NH-Add-Start (Ganimed: gas analyzer app)
+  # NH-Add-Start
   - type: EntityTableContainerFill
     containers:
       preinstalled-program-container: !type:AllSelector
@@ -784,6 +784,8 @@
         - id: NotekeeperCartridge
         - id: NanoTaskCartridge
         - id: NewsReaderCartridge
+        - id: NetProbeCartridge # NH-Add
+        - id: AstroNavCartridge # NH-Add
         - id: AtmosTekCartridge # NH-Add (Ganimed: gas analyzer app)
   # NH-Add-End
 
