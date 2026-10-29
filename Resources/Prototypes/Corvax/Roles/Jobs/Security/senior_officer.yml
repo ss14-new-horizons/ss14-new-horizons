@@ -4,26 +4,27 @@
   description: job-description-senior-officer
   playTimeTracker: JobSeniorOfficer
   requirements:
-    - !type:RoleTimeRequirement
-      role: JobWarden
-      time: 6h
-    - !type:RoleTimeRequirement
-      role: JobDetective
-      time: 2h
-    - !type:RoleTimeRequirement
-      role: JobSecurityOfficer
-      time: 6h
-    - !type:DepartmentTimeRequirement
-      department: Security
-      time: 60h
+  - !type:RoleTimeRequirement
+    role: JobWarden
+    time: 6h
+  - !type:RoleTimeRequirement
+    role: JobDetective
+    time: 2h
+  - !type:RoleTimeRequirement
+    role: JobSecurityOfficer
+    time: 6h
+  - !type:DepartmentTimeRequirement
+    department: Security
+    time: 60h
   startingGear: SeniorOfficerGear
   icon: "JobIconSeniorOfficer"
   supervisors: job-supervisors-hos
+  guides: [ Security, SOPSecurity ]
   access:
   - Security
   - Brig
   - Maintenance
-  - Service
+  - Cryogenics
   - External
   special:
   - !type:AddImplantSpecial

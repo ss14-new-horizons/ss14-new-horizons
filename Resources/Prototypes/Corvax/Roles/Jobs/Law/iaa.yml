@@ -17,6 +17,7 @@
   startingGear: IAAGear
   icon: "JobIconIAA"
   supervisors: job-supervisors-centcom
+  guides: [ CorporateLaw, SOPLegal ] # TODO: should have a more specific guidebook page instead of just linking to Space Law
   access:
   - Service
   - Brig
@@ -27,6 +28,9 @@
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
+  - !type:AddComponentSpecial
+    components:
+    - type: CommandStaff
 
 - type: startingGear
   id: IAAGear

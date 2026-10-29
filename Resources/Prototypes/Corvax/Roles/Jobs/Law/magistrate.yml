@@ -13,6 +13,7 @@
   startingGear: MagistrateGear
   icon: "JobIconMagistrate"
   supervisors: job-supervisors-centcom
+  guides: [ CorporateLaw, SOPLegal ] # TODO: should have a more specific guidebook page instead of just linking to Space Law
   access:
   - Command
   - Brig
@@ -20,6 +21,7 @@
   - External
   - Security
   - Lawyer
+  - Cryogenics
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]

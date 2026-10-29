@@ -17,11 +17,14 @@
   startingGear: BrigmedicGear
   icon: "JobIconBrigmedic"
   supervisors: job-supervisors-cmo
+  guides: [ Medical, Security, SOPSecurity ] # TODO: should have a more specific guidebook page instead of using the department itself
   access:
   - Security
   - Brig
   - Maintenance
   - Medical
+  - Cryogenics
+  - External
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]

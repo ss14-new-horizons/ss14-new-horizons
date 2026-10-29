@@ -4,12 +4,13 @@
   description: job-description-senior-researcher
   playTimeTracker: JobSeniorResearcher
   requirements:
-    - !type:DepartmentTimeRequirement
-      department: Science
-      time: 60h
+  - !type:DepartmentTimeRequirement
+    department: Science
+    time: 60h
   startingGear: SeniorResearcherGear
   icon: "JobIconSeniorResearcher"
   supervisors: job-supervisors-rd
+  guides: [ Science, SOPResearch ]
   access:
   - Research
   - Maintenance
