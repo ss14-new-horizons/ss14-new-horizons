@@ -176,6 +176,7 @@
     - id: PlushieLizardJobChiefengineer
       prob: 0.02
     - id: PrinterDocFlatpack # Corvax-Printer
+    - id: AtmosTekCartridge # NH-Add (Ganimed: gas analyzer app)
 
 # Hardsuit table, used for suit storage as well
 - type: entityTable
