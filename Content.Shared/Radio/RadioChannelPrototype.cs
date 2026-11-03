@@ -44,4 +44,12 @@ public sealed partial class RadioChannelPrototype : IPrototype
     /// </summary>
     [DataField]
     public bool LongRange;
+
+    // NH-Add-Start (Moffstation: Make common receive-only for headsets)
+    /// <summary>
+    /// Whether headsets are able to transmit the channel.
+    /// </summary>
+    [DataField]
+    public bool HeadsetTransmittable = true;
+    // NH-Add-End
 }
