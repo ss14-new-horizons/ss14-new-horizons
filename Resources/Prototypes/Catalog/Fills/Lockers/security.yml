@@ -124,7 +124,7 @@
       - id: ClothingEyesHudMedSec
         weight: 0.5
       # - id: ClothingEyesGlassesSunglassesMedical
-        # weight: 0.5
+      #   weight: 0.5
     # NH-Edit-End
     - id: WeaponDisabler
     - id: TrackingImplanter

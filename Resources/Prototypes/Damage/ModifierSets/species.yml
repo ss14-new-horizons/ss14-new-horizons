@@ -57,9 +57,9 @@
     Bloodloss: 0
     Cellular: 0
     Holy: 0.5
-  # NH-Add-Start
+  # NH-Add-Start (no soft tissue to be hurt by low blunt damage)
   flatReductions:
-    Blunt: 3
+    Blunt: 4
   # NH-Add-End
 
 # hurt a lot by blunt, immune to a good amount of other stuff because they're a cookie
