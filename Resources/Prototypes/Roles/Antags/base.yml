@@ -74,7 +74,8 @@
 
 - type: antagSpecifier
   abstract: true
-  parent: [ MindshieldRestrictedAntag, CyborgBlacklistedAntag, InternBlacklistedAntag ]
+  parent: [ MindshieldRestrictedAntag, CyborgBlacklistedAntag ] # NH-Edit (Removed InternBlacklistedAntag, allowing intern roles to be antags)
   id: RestrictedAntag
   jobBlacklist:
   - TramDriver
+  - Visitor # NH-Add

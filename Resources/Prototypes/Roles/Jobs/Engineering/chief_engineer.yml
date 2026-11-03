@@ -3,22 +3,31 @@
   name: job-name-ce
   description: job-description-ce
   playTimeTracker: JobChiefEngineer
+  requireAdminNotify: true # NH-Add (Job rework)
   requirements:
     - !type:RoleTimeRequirement
       role: JobAtmosphericTechnician
       time: 10h # Corvax-RoleTime 2.5h
-#    - !type:RoleTimeRequirement
-#      role: JobStationEngineer
-#      time: 21600 #6 hrs
+    # NH-Add-Start (Job rework, uncommented StationEngineer requirement)
+    - !type:RoleTimeRequirement
+      role: JobStationEngineer
+      time: 5h
+    # NH-Add-End
     - !type:DepartmentTimeRequirement
       department: Engineering
-      time: 15h # Corvax-RoleTime 5h
-#    - !type:OverallPlaytimeRequirement
-#      time: 144000 #40 hrs
+      time: 20h # Corvax-RoleTime 10h # NH-Tweak (15h)
+    # NH-Add-Start (Job rework, uncommented OverallPlaytimeRequirement)
+    - !type:OverallPlaytimeRequirement
+      time: 40h
+    # NH-Add-End
     - !type:TraitsRequirement #Corvax-TraitsRequirement
       inverted: true
       traits:
       - Muted
+    # NH-Add-Start (Job rework)
+    - !type:AgeRequirement
+      requiredAge: 24
+    # NH-Add-End
   startingGear: ChiefEngineerGear
   icon: "JobIconChiefEngineer"
   supervisors: job-supervisors-captain

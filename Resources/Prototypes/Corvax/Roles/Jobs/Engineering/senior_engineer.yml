@@ -13,6 +13,10 @@
     - !type:DepartmentTimeRequirement
       department: Engineering
       time: 60h
+    # NH-Add-Start (Job rework)
+    - !type:AgeRequirement
+      requiredAge: 21
+    # NH-Add-End
   startingGear: SeniorEngineerGear
   icon: "JobIconSeniorEngineer"
   supervisors: job-supervisors-ce

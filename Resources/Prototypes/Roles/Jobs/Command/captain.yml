@@ -3,28 +3,47 @@
   name: job-name-captain
   description: job-description-captain
   playTimeTracker: JobCaptain
+  # NH-Add-Start (Job rework)
+  requireAdminNotify: true
+  whitelisted: true
+  # NH-Add-End
   requirements:
     - !type:DepartmentTimeRequirement
       department: Engineering
-      time: 20h # Corvax-RoleTime 4
+      time: 4h # Corvax-RoleTime 4 # NH-Tweak (20h, Job rework)
     - !type:DepartmentTimeRequirement
       department: Medical
-      time: 20h # Corvax-RoleTime 4
+      time: 4h # Corvax-RoleTime 4 # NH-Tweak (20h, Job rework)
     - !type:DepartmentTimeRequirement
       department: Science
       time: 4h
     - !type:DepartmentTimeRequirement
       department: Security
       time: 20h # Corvax-RoleTime 4
-#    - !type:DepartmentTimeRequirement
-#      department: Command
-#      time: 4h
+    # NH-Add-Start (Job rework, uncommented Command requirement)
+    - !type:DepartmentTimeRequirement
+      department: Command
+      time: 20h # NH-Tweak (4h, Job rework)
+    # NH-Add-End
     - !type:OverallPlaytimeRequirement
-      time: 140h # Corvax-RoleTime 4
+      time: 100h # Corvax-RoleTime # NH-Tweak (140h, Job rework)
     - !type:TraitsRequirement #Corvax-TraitsRequirement
       inverted: true
       traits:
       - Muted
+      # NH-Add-Start (Job rework, Captain must be proficient in communication and steering)
+      - Blindness
+      # - Monolingual
+      # - Deaf
+      # NH-Add-End
+    # NH-Add-Start (Job rework)
+    - !type:AgeRequirement
+      requiredAge: 24
+    - !type:SpeciesRequirement
+      inverted: true
+      species:
+      - Vox
+    # NH-Add-End
   startingGear: CaptainGear
   icon: "JobIconCaptain"
   joinNotifyCrew: true

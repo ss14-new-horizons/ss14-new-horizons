@@ -58,7 +58,8 @@
     children:
     - id: ClothingOuterHardsuitWarden
     - id: OxygenTankFilled
-    - id: ClothingMaskBreath
+    - id: NitrogenTankFilled # NH-Add
+    - id: ClothingMaskGasSecurity # NH-Edit (ClothingMaskBreath)
 
 - type: entity
   id: LockerSecurityFilled
@@ -115,7 +116,16 @@
   id: FillLockerBrigmedic
   table: !type:AllSelector
     children:
-    - id: ClothingEyesGlassesSecurity
+    # NH-Edit-Start (Removed ClothingEyesGlassesSecurity, substituted for brigmedic-specific eyewear)
+    - !type:GroupSelector
+      children:
+      - id: ClothingEyesHudMedical
+        weight: 1
+      - id: ClothingEyesHudMedSec
+        weight: 0.5
+      # - id: ClothingEyesGlassesSunglassesMedical
+        # weight: 0.5
+    # NH-Edit-End
     - id: WeaponDisabler
     - id: TrackingImplanter
       amount: 2
@@ -155,7 +165,12 @@
     - id: ClothingMaskBreathMedicalSecurity
     - id: BoxBodyBag
     - id: Defibrillator
-    - id: MedkitAdvancedFilled
+    # NH-Edit-Start (50/50 chance for an advanced or combat medkit, instead of a guaranteed MedkitAdvancedFilled)
+    - !type:GroupSelector
+      children:
+      - id: MedkitAdvancedFilled
+      - id: MedkitCombatFilled
+    # NH-Edit-End
       # Corvax-Brigmedic-End
 
 - type: entity

@@ -3,22 +3,29 @@
   name: job-name-qm
   description: job-description-qm
   playTimeTracker: JobQuartermaster
+  requireAdminNotify: true # NH-Add (Job rework)
   requirements:
-#    - !type:RoleTimeRequirement
-#      role: JobCargoTechnician
-#      time: 21600 #6 hrs
+    # NH-Add-Start (Job rework, uncommented JobCargoTechnician requirement)
+    - !type:RoleTimeRequirement
+      role: JobCargoTechnician
+      time: 5h
+    # NH-Add-End
     - !type:RoleTimeRequirement
       role: JobSalvageSpecialist
       time: 10h # Corvax-RoleTime 2.5
     - !type:DepartmentTimeRequirement
       department: Cargo
-      time: 10h
+      time: 20h # NH-Tweak (10h)
     - !type:OverallPlaytimeRequirement
       time: 40h # Corvax-RoleTime
     - !type:TraitsRequirement #Corvax-TraitsRequirement
       inverted: true
       traits:
       - Muted
+    # NH-Add-Start (Job rework)
+    - !type:AgeRequirement
+      requiredAge: 24
+    # NH-Add-End
   startingGear: QuartermasterGear
   icon: "JobIconQuarterMaster"
   supervisors: job-supervisors-captain

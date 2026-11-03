@@ -8,6 +8,7 @@
     CrowbarYellow: 8
     Multitool: 4
     NetworkConfigurator: 5
+    GeigerCounter: 3 # NH-Add
     PowerCellMedium: 5
     ClothingHandsGlovesColorYellow: 6
     BoxInflatable: 2

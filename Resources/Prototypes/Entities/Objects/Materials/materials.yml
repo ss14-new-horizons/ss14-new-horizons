@@ -98,7 +98,7 @@
   - type: Edible
     requiresSpecialDigestion: true
     solution: composite
-    delay: 2 # NH-Add
+    delay: 2 # NH-Add (Takes longer to eat clothing)
   - type: FlavorProfile
     flavors:
     - fiber
@@ -167,7 +167,7 @@
   - type: Edible
     requiresSpecialDigestion: true
     solution: composite
-    delay: 2 # NH-Add
+    delay: 2.5 # NH-Add (Takes longer to eat clothing)
   - type: Solution
     solution:
       maxVol: 20

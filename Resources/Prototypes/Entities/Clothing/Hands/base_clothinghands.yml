@@ -9,7 +9,7 @@
     slots: [gloves]
   - type: Edible
     requiresSpecialDigestion: true
-    delay: 2 # NH-Add
+    delay: 2 # NH-Add (Increased from default 1, takes longer to eat clothing)
   - type: Item
     size: Small
     storedRotation: -90

@@ -7,6 +7,12 @@
   startingGear: ERTSecurityGearEVA
   icon: "JobIconERTSecurity"
   supervisors: job-supervisors-centcom
+  # NH-Add-Start (Job rework, ghostrole time requirements)
+  requirements:
+  - !type:DepartmentTimeRequirement
+    department: Security
+    time: 10h
+  # NH-Add-End
   accessGroups:
   - AllAccess
   access:

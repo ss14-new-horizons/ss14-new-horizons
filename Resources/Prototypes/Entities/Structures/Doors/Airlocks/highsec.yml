@@ -10,7 +10,7 @@
     crushDamage:
       types:
         Blunt: 50
-    pryTime: 1.75 # NH-Add (Buff highsec doors from default 1.5)
+    pryTime: 1.75 # NH-Add (Increased from default 1.5 seconds)
   - type: Weldable
     fuel: 10
     time: 10

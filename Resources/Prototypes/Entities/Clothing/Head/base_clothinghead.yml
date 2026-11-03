@@ -13,7 +13,7 @@
     storedRotation: -90
   - type: Edible
     requiresSpecialDigestion: true
-    delay: 2 # NH-Add
+    delay: 2 # NH-Add (Increased from default 1, takes longer to eat clothing)
   - type: Solution
     solution:
       reagents:
@@ -117,7 +117,7 @@
   name: base space helmet
   components:
 # SlotBlocker blocked until UI change
-  # NH-Edit-Start (uncommented SlotBlock)
+  # NH-Edit-Start (Uncommented SlotBlock)
   - type: SlotBlock
     slots: [ears, eyes, mask]
   # NH-Edit-End
@@ -155,7 +155,7 @@
   categories: [ HideSpawnMenu ]
   components:
 # SlotBlocker blocked until UI change
-  # NH-Edit-Start (uncommented SlotBlock)
+  # NH-Edit-Start (Uncommented SlotBlock)
   - type: SlotBlock
     slots: [ears, eyes, mask]
   # NH-Edit-End
@@ -214,7 +214,7 @@
   categories: [ HideSpawnMenu ]
   components:
 # SlotBlocker blocked until UI change
-  # NH-Edit-Start (uncommented SlotBlock)
+  # NH-Edit-Start (Uncommented SlotBlock)
   - type: SlotBlock
     slots: [ears, eyes, mask]
   # NH-Edit-End

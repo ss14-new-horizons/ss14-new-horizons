@@ -716,7 +716,7 @@
   - type: PressureProtection
     highPressureMultiplier: 0.2
     lowPressureMultiplier: 1000
-  - type: StaminaResistance # Should not have stamina resistance, this is purely so people know it was not forgotten. # NH-Edit (readd stamina resistance)
+  - type: StaminaResistance # Should not have stamina resistance, this is purely so people know it was not forgotten. # NH-Edit (Uncommented StaminaResistance)
     damageCoefficient: 0.9 # NH-Add
   - type: Armor
     modifiers:

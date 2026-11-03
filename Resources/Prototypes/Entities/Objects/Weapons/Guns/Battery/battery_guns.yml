@@ -33,7 +33,7 @@
   - type: AmmoCounter
 
 - type: entity
-  parent: [BaseWeaponBattery, BaseGunWieldableBattery] # NH-Edit (BaseGunWieldable -> BaseGunWieldableBattery)
+  parent: [BaseWeaponBattery, BaseGunWieldableBattery] # NH-Edit (BaseGunWieldable -> BaseGunWieldableBattery, buff lasers)
   id: BaseLaserRifle
   abstract: true
   components:
@@ -60,7 +60,7 @@
     - SemiAuto
   - type: BatteryAmmoProvider
     proto: RedLaser
-    fireCost: 50 # NH-Tweak (62.5)
+    fireCost: 50 # NH-Tweak (62.5, buff lasers)
   - type: StaticPrice
     price: 420
   - type: Tag
@@ -438,7 +438,7 @@
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
   - type: BatteryAmmoProvider
     proto: RedHeavyLaser
-    fireCost: 80 # NH-Tweak (100)
+    fireCost: 80 # NH-Tweak (100, buff lasers)
   - type: Tag
     tags:
     - TurretCompatibleWeapon

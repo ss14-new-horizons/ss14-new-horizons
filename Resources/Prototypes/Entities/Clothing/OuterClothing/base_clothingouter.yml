@@ -72,7 +72,7 @@
   components:
   - type: Edible
     requiresSpecialDigestion: true
-    delay: 2 # NH-Add
+    delay: 2 # NH-Add (Increased from default 1, takes longer to eat clothing)
   - type: Solution
     solution:
       reagents:
@@ -146,7 +146,7 @@
   name: base EVA Suit
   components:
 # SlotBlocker blocked until UI change
-  # NH-Edit-Start (uncommented SlotBlock)
+  # NH-Edit-Start (Uncommented SlotBlock)
   - type: SlotBlock
     slots: [innerclothing, feet, gloves]
   # NH-Edit-End
