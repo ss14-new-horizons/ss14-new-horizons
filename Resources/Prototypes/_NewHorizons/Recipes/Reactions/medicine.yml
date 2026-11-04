@@ -5,7 +5,7 @@
   reactants:
     Ambuzol:
       amount: 3
-    Omnizine:
+    Omnizine: # Could've been necrosol but it was removed
       amount: 2
     Opporozidone:
       amount: 1
