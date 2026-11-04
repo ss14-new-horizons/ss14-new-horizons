@@ -3,16 +3,19 @@
   name: job-name-hos
   description: job-description-hos
   playTimeTracker: JobHeadOfSecurity
+  requireAdminNotify: true # NH-Add (Job rework)
   requirements:
     - !type:RoleTimeRequirement
       role: JobWarden
       time: 10h # Corvax-RoleTime 1
-    #- !type:RoleTimeRequirement
-    #  role: JobDetective
-    #  time: 1h # knowing how to use the tools is important
-    #- !type:RoleTimeRequirement
-    #  role: JobSecurityOfficer
-    #  time: 5h
+    # NH-Edit-Start (Job rework, uncommented removed requirements)
+    - !type:RoleTimeRequirement
+      role: JobDetective
+      time: 1h # knowing how to use the tools is important
+    - !type:RoleTimeRequirement
+      role: JobSecurityOfficer
+      time: 5h
+    # NH-Edit-End
     - !type:DepartmentTimeRequirement
       department: Security
       time: 50h # Corvax-RoleTime 10
@@ -20,6 +23,21 @@
       inverted: true
       traits:
       - Muted
+      # NH-Add-Start (Job rework, HoS undergoes medical examination)
+      - Blindness
+      - Pacifist
+      # - WheelchairBound
+      # - Frail
+      # NH-Add-End
+    # NH-Add-Start (Job rework)
+    - !type:AgeRequirement
+      requiredAge: 24
+    - !type:SpeciesRequirement
+      inverted: true
+      species:
+      - Vox
+      - Diona
+    # NH-Add-End
   startingGear: HoSGear
   icon: "JobIconHeadOfSecurity"
   supervisors: job-supervisors-captain

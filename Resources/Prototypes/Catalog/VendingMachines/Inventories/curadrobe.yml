@@ -15,5 +15,11 @@
     ClothingShoesBootsLaceup: 2
     ClothingHeadsetService: 2
     PrinterDocFlatpack: 2 # Corvax-Printer
+    # NH-Add-Start
+    # BookPrinterFlatpack: 1
+    # BookPrinterInkCartridge: 1
+    Pen: 2 # Add more variations?
+    # NH-Add-End
   contrabandInventory:
+    LuxuryPen: 1 # NH-Add
     ToyFigurineLibrarian: 1

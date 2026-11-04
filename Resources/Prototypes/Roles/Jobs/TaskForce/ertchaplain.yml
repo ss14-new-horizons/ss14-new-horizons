@@ -7,6 +7,11 @@
   startingGear: ERTChaplainGear
   icon: "JobIconERTChaplain"
   supervisors: job-supervisors-centcom
+  # NH-Add-Start (Job rework, ghostrole time requirements)
+  requirements:
+  - !type:OverallPlaytimeRequirement
+    time: 10h
+  # NH-Add-End
   accessGroups:
   - AllAccess
   access:

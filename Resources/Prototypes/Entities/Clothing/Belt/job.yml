@@ -228,6 +228,10 @@
       - DiscreteHealthAnalyzer
       - SurgeryTool
       - Dropper
+      # NH-Add-Start
+      - Syringe
+      - CentrifugeCompatible
+      # NH-Add-End
       components:
       - Injector
       - Pill

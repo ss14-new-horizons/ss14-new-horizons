@@ -7,6 +7,10 @@
     - !type:DepartmentTimeRequirement
       department: Cargo
       time: 3h
+    # NH-Add-Start (Job rework, uncommented OverallPlaytimeRequirement)
+    - !type:OverallPlaytimeRequirement
+      time: 10h
+    # NH-Add-End
   icon: "JobIconShaftMiner"
   startingGear: SalvageSpecialistGear
   supervisors: job-supervisors-qm

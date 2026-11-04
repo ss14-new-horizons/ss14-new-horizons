@@ -6,10 +6,12 @@
   requirements:
     - !type:OverallPlaytimeRequirement
       time: 1h
-    - !type:DepartmentTimeRequirement
-      department: Engineering
-      time: 10h # Corvax-RoleTime
-      inverted: true # stop playing intern if you're good at engineering!
+    # NH-Remove-Start (Job rework, no inverted timers for intern roles)
+    # - !type:DepartmentTimeRequirement
+    #   department: Engineering
+    #   time: 10h # Corvax-RoleTime
+    #   inverted: true # stop playing intern if you're good at engineering!
+    # NH-Remove-End
   startingGear: TechnicalAssistantGear
   icon: "JobIconTechnicalAssistant"
   supervisors: job-supervisors-engineering

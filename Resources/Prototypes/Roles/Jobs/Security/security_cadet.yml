@@ -6,14 +6,21 @@
   requirements:
     - !type:OverallPlaytimeRequirement
       time: 10h # Corvax-RoleTime
-    - !type:DepartmentTimeRequirement
-      department: Security
-      time: 20h # Corvax-RoleTime 5
-      inverted: true # stop playing intern if you're good at security!
+    # NH-Remove-Start (Job rework, no inverted timers for intern roles)
+    # - !type:DepartmentTimeRequirement
+    #   department: Security
+    #   time: 20h # Corvax-RoleTime 5
+    #   inverted: true # stop playing intern if you're good at security!
+    # NH-Remove-End
     - !type:TraitsRequirement #Corvax-TraitsRequirement
       inverted: true
       traits:
       - Muted
+    # NH-Add-Start (Job rework, no geriatric cadets)
+    - !type:AgeRequirement
+      inverted: true
+      requiredAge: 100
+    # NH-Add-End
   startingGear: SecurityCadetGear
   icon: "JobIconSecurityCadet"
   supervisors: job-supervisors-security
@@ -22,6 +29,7 @@
   - Security
   - Brig
   - Maintenance
+  extendedAccess: # NH-Add (Job rework, no external and cryo access for cadets by default)
   - External
   - Cryogenics
   special:
@@ -37,7 +45,7 @@
     ears: ClothingHeadsetSecurity
     belt: ClothingBeltSecurityFilled
     pocket1: WeaponPistolMk58
-    pocket2: BookSpaceLaw # Corvax-HyperLink
+    pocket2: BookSecurity # Corvax-HyperLink # NH-Edit (BookSpaceLaw)
   storage:
     back:
     - Flash

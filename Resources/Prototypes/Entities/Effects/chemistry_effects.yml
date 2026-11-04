@@ -30,6 +30,10 @@
     solution:
       maxVol: 600 # Required for it to spawn correctly, but should be removed in the future:tm: Arguably could move the solution to SmokeComponent as well considering it's nonreactive
       canReact: false
+  # NH-Add-Start (Examinable foam chemical composition)
+  - type: ExaminableSolution
+    solution: solutionArea
+  # NH-Add-End
 
 - type: entity
   parent: BaseFoam

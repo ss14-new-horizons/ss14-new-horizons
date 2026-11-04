@@ -7,6 +7,12 @@
   startingGear: ERTMedicalGearEVA
   icon: "JobIconERTMedic"
   supervisors: job-supervisors-centcom
+  # NH-Add-Start (Job rework, ghostrole time requirements)
+  requirements:
+  - !type:DepartmentTimeRequirement
+    department: Medical
+    time: 10h
+  # NH-Add-End
   accessGroups:
   - AllAccess
   access:

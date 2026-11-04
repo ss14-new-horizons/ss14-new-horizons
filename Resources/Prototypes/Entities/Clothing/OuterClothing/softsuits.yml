@@ -117,6 +117,10 @@
         Heat: 0.90
         Radiation: 0.75
         Caustic: 0.5
+  # NH-Add-Start
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.9
+  # NH-Add-End
   - type: GroupExamine
   - type: StealTarget
     stealGroup:

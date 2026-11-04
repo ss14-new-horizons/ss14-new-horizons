@@ -34,6 +34,10 @@
     sprite: Clothing/OuterClothing/Bio/cmo.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Bio/cmo.rsi
+  # NH-Add-Start
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.25
+  # NH-Add-End
 
 - type: entity
   parent: ClothingOuterBioGeneral

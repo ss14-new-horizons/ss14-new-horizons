@@ -76,6 +76,11 @@
     state: advkit
   - type: Item
     heldPrefix: advkit
+  # NH-Add-Start (Slightly larger internal storage)
+  - type: Storage
+    grid:
+    - 0,0,4,1
+  # NH-Add-End
 
 - type: entity
   name: radiation treatment kit

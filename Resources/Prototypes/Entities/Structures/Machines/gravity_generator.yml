@@ -56,6 +56,7 @@
   components:
   - type: Sprite
     sprite: Structures/Machines/gravity_generator.rsi
+    drawdepth: Mobs # NH-Add (Raised to 6 (Mobs) from default 0 (Objects) due to the reduction of the hitbox from the top, so mobs actually render behind it)
     layers:
     - state: on
       map: ["enum.GravityGeneratorVisualLayers.Base"]
@@ -68,7 +69,7 @@
       fix1:
         shape:
           !type:PhysShapeAabb
-          bounds: "-1.5,-1.5,1.5,1.5"
+          bounds: "-1.4,-1.3,1.4,0.5" # NH-Tweak ("-1.5,-1.5,1.5,1.5", more sensible non-square hitbox, since this sprite doesn't rotate with the client's camera angle)
         density: 50
         mask:
         - LargeMobMask
@@ -77,6 +78,7 @@
   - type: Repairable
     fuelCost: 10
     doAfterDelay: 5
+  - type: SpriteFade # NH-Add (Necessary due to the reduction of the hitbox from the top, so you can see stuff behind it)
 #  - type: Injurable                          Indestructible because
 #    damageContainer: StructuralInorganic
 #  - type: Damageable

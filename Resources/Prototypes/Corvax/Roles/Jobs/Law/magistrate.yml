@@ -5,11 +5,16 @@
   playTimeTracker: JobMagistrate
   whitelisted: true # No-Ki сказал, что договорился!
   setPreference: false # Увы
+  requireAdminNotify: true # NH-Add (Job rework)
   requirements:
   - !type:TraitsRequirement
     inverted: true
     traits:
     - Muted
+  # NH-Add-Start (Job rework)
+  - !type:AgeRequirement
+    requiredAge: 24
+  # NH-Add-End
   startingGear: MagistrateGear
   icon: "JobIconMagistrate"
   supervisors: job-supervisors-centcom

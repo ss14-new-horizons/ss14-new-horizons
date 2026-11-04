@@ -10,7 +10,7 @@
   - Roundstart
   requirements:
   - !type:OverallPlaytimeRequirement
-    time: 30h # Corvax-RoleTime 1
+    time: 10h # Corvax-RoleTime 1 # NH-Tweak (30h, Antag and ghostrole time requirements)
 
 - type: antagSpecifier
   abstract: true
@@ -40,7 +40,7 @@
   - Midround
   requirements:
   - !type:OverallPlaytimeRequirement
-    time: 1h
+    time: 10h # NH-Tweak (1h, Antag and ghostrole time requirements)
 
 - type: antagSpecifier
   parent: BaseTraitor
