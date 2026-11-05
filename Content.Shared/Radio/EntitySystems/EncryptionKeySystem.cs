@@ -215,7 +215,7 @@ public sealed partial class EncryptionKeySystem : EntitySystem
                 ? SharedChatSystem.RadioCommonPrefix.ToString()
                 : $"{SharedChatSystem.RadioChannelPrefix}{proto.KeyCode}";
 
-            // NH-Edit-Start (Moffstation: Make common receive-only for headsets. Use new locale string when examining recieve-only frequency in a headset)
+            // NH-Edit-Start (Moffstation: Make common receive-only for headsets. Use new locale string when examining receive-only frequency in a headset)
             examineEvent.PushMarkup(Loc.GetString(!proto.HeadsetTransmittable && HasComp<HeadsetComponent>(examineEvent.Examined)
                 ? "examine-encryption-receive-only-channel"
                 : channelFTLPattern,

@@ -47,7 +47,7 @@ public sealed partial class CCVars
     ///     Decreases the intensity of the vacuum overlay 1.0f is maximum.
     /// </summary>
     public static readonly CVarDef<float> VacuumOverlayIntensity =
-        CVarDef.Create("accessibility.vacuum_overlay_intensity", 0.5f, CVar.CLIENTONLY | CVar.ARCHIVE);
+        CVarDef.Create("accessibility.vacuum_overlay_intensity", 0.25f, CVar.CLIENTONLY | CVar.ARCHIVE); // NH-Tweak (0.5f)
 
     /// <summary>
     ///     Toggles vacuum overlay serverside. If you do not want it as an option for your players use this.

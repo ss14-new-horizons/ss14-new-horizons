@@ -9,27 +9,25 @@ using Content.Shared.CartridgeLoader;
 namespace Content.Shared._Ganimed.CartridgeLoader.Cartridges;
 
 /// <summary>
-/// Works the same way as the <see cref="MedTekCartridgeSystem"/>.
-/// The program cannot be activated in the PDA UI.
-/// You have to click on another object for the UI to pop-up separately.
+/// Functions identically to <see cref="MedTekCartridgeSystem"/>,
+/// but utilizes <see cref="GasAnalyzerComponent"/> instead of HealthAnalyzerComponent.
 /// </summary>
+/// <remarks>
+/// The program cannot be activated in the PDA UI,
+/// you have to click on another object for the UI to pop-up separately.
+/// Requires <see cref="GasAnalyzerUiKey"/> on a PDA to function.
+/// </remarks>
 public sealed partial class AtmosTekCartridgeSystem : EntitySystem
 {
     [Dependency] private CartridgeLoaderSystem _cartridgeLoaderSystem = default!;
 
-    public override void Initialize()
-    {
-        base.Initialize();
-
-        SubscribeLocalEvent<AtmosTekCartridgeComponent, CartridgeAddedEvent>(OnCartridgeAdded);
-        SubscribeLocalEvent<AtmosTekCartridgeComponent, CartridgeRemovedEvent>(OnCartridgeRemoved);
-    }
-
+    [SubscribeLocalEvent]
     private void OnCartridgeAdded(Entity<AtmosTekCartridgeComponent> ent, ref CartridgeAddedEvent args)
     {
         EnsureComp<GasAnalyzerComponent>(args.Loader);
     }
 
+    [SubscribeLocalEvent]
     private void OnCartridgeRemoved(Entity<AtmosTekCartridgeComponent> ent, ref CartridgeRemovedEvent args)
     {
         // only remove when the program itself is removed

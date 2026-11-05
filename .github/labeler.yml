@@ -42,5 +42,5 @@
   - any-glob-to-any-file:
     - 'Resources/ServerInfo/**/*.xml'
     - 'Resources/Prototypes/Guidebook/**/*.yml'
-    - 'Resources/Prototypes/*/Guidebook/**/*.xml'
+    - 'Resources/Prototypes/*/Guidebook/**/*.yml'
 # NH-Add-End
