@@ -10,7 +10,7 @@ body:
     attributes:
       label: В какой версии игры происходит ошибка?
       description: Вы можете узнать версию, нажав на кнопку "Обновления" в игре и посмотрев версию в правом нижнем углу окна обновлений.
-      placeholder: syndicate/aa1337b
+      placeholder: newhorizons/aa1337b
     validations:
       required: false
   - type: input

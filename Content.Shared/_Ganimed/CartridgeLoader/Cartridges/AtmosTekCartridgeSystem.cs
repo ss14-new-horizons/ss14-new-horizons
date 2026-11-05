@@ -9,10 +9,13 @@ using Content.Shared.CartridgeLoader;
 namespace Content.Shared._Ganimed.CartridgeLoader.Cartridges;
 
 /// <summary>
-/// Works the same way as the <see cref="MedTekCartridgeSystem"/>.
-/// The program cannot be activated in the PDA UI.
-/// You have to click on another object for the UI to pop-up separately.
+/// Functions identically to <see cref="MedTekCartridgeSystem"/> or <see cref="AstroNavCartridgeSystem"/>,
+/// but utilizes <see cref="GasAnalyzerComponent"/> instead of HealthAnalyzerComponent or HandheldGPSComponent.
 /// </summary>
+/// <remarks>
+/// The program cannot be activated in the PDA UI,
+/// you have to click on another object for the UI to pop-up separately.
+/// </remarks>
 public sealed partial class AtmosTekCartridgeSystem : EntitySystem
 {
     [Dependency] private CartridgeLoaderSystem _cartridgeLoaderSystem = default!;

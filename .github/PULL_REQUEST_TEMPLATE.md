@@ -21,6 +21,7 @@
 - [ ] Я прочитал(а) и следую [Руководству по оформлению Pull Request и Changelog](https://docs.spacestation14.com/en/general-development/codebase-info/pull-request-guidelines.html) и [Руководству по контрибьюту](https://github.com/ss14-new-horizons/ss14-new-horizons/blob/master/CONTRIBUTING.md).
 - [ ] Я протестировал(а) эти изменения и написал(а) инструкции по тестированию.
 - [ ] Я добавил(а) медиафайлы к этому PR или он не требует демонстрации в игре.
+- [ ] Я соглашаюсь с условиями лицензионного соглашения и подтверждаю соблюдение условий [лицензии](https://github.com/ss14-new-horizons/ss14-new-horizons/blob/master/LICENSE-AGPL-3.0-or-later.TXT).
 <!-- Вы должны понимать, что несоблюдение вышеуказанного может привести к закрытию вашего PR по усмотрению сопровождающего. -->
 
 ## Критические изменения
