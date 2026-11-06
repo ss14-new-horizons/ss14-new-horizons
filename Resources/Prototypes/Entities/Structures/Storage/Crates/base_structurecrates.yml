@@ -36,6 +36,7 @@
   - type: StaticPrice
     price: 75
   - type: RequireProjectileTarget
+  - type: ChildBlockVision # NH-Add (Starlight: Containers block vision)
 
 - type: entity
   parent: [ BaseCrate, StructureHealthContainerWeak ]

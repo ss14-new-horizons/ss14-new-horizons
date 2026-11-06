@@ -52,6 +52,7 @@
   - type: DisposalTube
   - type: StaticPrice
     price: 30
+  - type: ChildBlockVision # NH-Add (Starlight: Containers block vision)
 
 - type: entity
   id: DisposalHolder
@@ -77,6 +78,7 @@
         shape:
           !type:PhysShapeCircle
           radius: 0.25
+  - type: ChildBlockVision # NH-Add (Starlight: Containers block vision)
 
 # Pipes
 
@@ -93,6 +95,10 @@
   - type: Construction
     graph: DisposalPipe
     node: broken
+  # NH-Add-Start (Starlight: Containers block vision)
+  - type: ChildBlockVision
+    enabled: false
+  # NH-Add-End
 
 - type: entity
   id: DisposalPipe
@@ -211,6 +217,10 @@
   - type: Construction
     graph: DisposalPipe
     node: trunk
+  # NH-Add-Start (Starlight: Containers block vision)
+  - type: ChildBlockVision
+    enabled: false
+  # NH-Add-End
 
 - type: entity
   id: DisposalRouter
