@@ -50,7 +50,7 @@
 - type: satiation
   id: CockroachHunger
   parent: SimpleMobBaseHunger
-  baseChangeRate: -0.25
+  baseChangeRate: -0.2 # NH-Tweak (-0.25, less hungry roaches)
 
 - type: satiation
   id: MouseHunger
@@ -71,7 +71,7 @@
 - type: satiation
   id: HamsterHunger
   parent: SimpleMobBaseHunger
-  baseChangeRate: -0.3
+  baseChangeRate: -0.25 # NH-Tweak (-0.3, less hungry hamlet)
 
 - type: satiation
   id: RegalRatHunger

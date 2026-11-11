@@ -38,6 +38,7 @@
     bodyType: static
   - type: StaticPrice
     price: 30
+  - type: ChildBlockVision # NH-Add (Starlight: Containers block vision)
 
 - type: entity
   abstract: true

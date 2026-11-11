@@ -29,16 +29,16 @@ DISCORD_SPLIT_LIMIT = 2000
 DISCORD_WEBHOOK_URL = os.environ.get("DISCORD_WEBHOOK_URL")
 TRUNCATION_SUFFIX = " [...]"
 
-CHANGELOG_FILES = ["Resources/Changelog/Changelog.yml", "Resources/Changelog/ChangelogSyndie.yml"] # Corvax-MultiChangelog
+CHANGELOG_FILES = ["Resources/Changelog/ChangelogNewHorizons.yml"] # NH-Edit (removed vanilla changelog files)
 
 TYPES_TO_EMOJI = {
     "Fix":    "🐛",
-    "Add":    "✨", # Corvax: Use gitmoji 💥
+    "Add":    "🆕",
     "Remove": "❌",
     "Tweak":  "⚒️"
 }
 
-EXPERIMENTAL_LABEL = "Intent: Experimental"
+EXPERIMENTAL_LABEL = "Цель: Тестмердж/Эксперимент"
 EXPERIMENTAL_EMOJI = "🧪"
 
 ChangelogEntry = dict[str, Any]

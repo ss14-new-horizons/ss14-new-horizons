@@ -6,7 +6,11 @@
   requirements:
   - !type:DepartmentTimeRequirement
     department: Medical
-    time: 2.5h
+    time: 3h # NH-Tweak (2.5h, Job rework)
+  # NH-Add-Start (Job rework, uncommented OverallPlaytimeRequirement)
+  - !type:OverallPlaytimeRequirement
+    time: 10h
+  # NH-Add-End
   startingGear: ParamedicGear
   icon: "JobIconParamedic"
   supervisors: job-supervisors-cmo

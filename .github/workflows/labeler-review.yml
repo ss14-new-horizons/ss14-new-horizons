@@ -15,9 +15,9 @@ jobs:
       id: checkUserMember
       with:
         username: ${{ github.actor }}
-        team: "content-maintainers,junior-maintainers"
+        team: "content-maintainers,maintainers,management,leadership"
         GITHUB_TOKEN: ${{ secrets.LABELER_PAT }}
     - if: ${{ steps.checkUserMember.outputs.isTeamMember == 'true' }}
       uses: actions-ecosystem/action-add-labels@v1
       with:
-        labels: "S: Approved"
+        labels: "Ст: Одобрено"

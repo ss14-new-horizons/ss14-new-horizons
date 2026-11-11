@@ -13,6 +13,10 @@
     - !type:DepartmentTimeRequirement
       department: Medical
       time: 60h
+    # NH-Add-Start (Job rework)
+    - !type:AgeRequirement
+      requiredAge: 21
+    # NH-Add-End
   startingGear: SeniorPhysicianGear
   icon: "JobIconSeniorPhysician"
   supervisors: job-supervisors-cmo

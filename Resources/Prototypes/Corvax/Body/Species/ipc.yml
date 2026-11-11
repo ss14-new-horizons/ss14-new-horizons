@@ -208,8 +208,10 @@
     doAfterDelay: 20
     selfRepairPenalty: 2
   - type: DamagedSiliconAccent
-  - type: Reflect
-    reflectProb: 0.05
+  # NH-Remove-Start (IPC rebalance)
+  # - type: Reflect
+  #   reflectProb: 0.05
+  # NH-Remove-End
   - type: SleepEmitSound
     snore: /Audio/Machines/buzz-two.ogg
     interval: 30

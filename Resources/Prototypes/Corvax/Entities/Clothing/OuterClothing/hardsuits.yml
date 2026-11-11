@@ -24,8 +24,15 @@
         Cold: 0.1
         Shock: 0.1
         Radiation: 0.1
+        Caustic: 0.1 # NH-Add
   - type: ExplosionResistance
     damageCoefficient: 0.7
+  # NH-Add-Start
+  - type: StaminaResistance
+    damageCoefficient: 0.8
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.2
+  # NH-Add-End
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetCBURNLeader
 

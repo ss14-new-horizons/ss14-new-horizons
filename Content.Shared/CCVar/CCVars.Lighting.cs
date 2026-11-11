@@ -14,9 +14,9 @@ public sealed partial class CCVars
         CVarDef.Create("light.space_light_color", DefaultSpaceLightColor, CVar.SERVERONLY);
 
     public static readonly CVarDef<bool> AmbientOcclusion =
-        CVarDef.Create("light.ambient_occlusion", true, CVar.CLIENTONLY | CVar.ARCHIVE);
+        CVarDef.Create("light.ambient_occlusion", false, CVar.CLIENTONLY | CVar.ARCHIVE); // NH-Tweak
 
-    public static readonly Color DefaultAmbientOcclusionColor = Color.FromHex("#04080FAA");
+    public static readonly Color DefaultAmbientOcclusionColor = Color.FromHex("#04080F90"); // NH-Tweak (#04080FAA)
 
     /// <summary>
     /// Color of ambient occlusion.

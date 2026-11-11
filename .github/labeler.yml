@@ -1,31 +1,46 @@
-"Changes: Sprites":
+"Изм: Спрайты":
 - changed-files:
   - any-glob-to-any-file: '**/*.rsi/*.png'
 
-"Changes: Map":
+"Изм: Карты":
 - changed-files:
   - any-glob-to-any-file:
     - 'Resources/Maps/**/*.yml'
     - 'Resources/Prototypes/Maps/**/*.yml'
-    - 'Resources/Prototypes/Corvax/Maps/**/*.yml'
+    - 'Resources/Prototypes/*/Maps/**/*.yml'
 
-"Changes: UI":
+"Изм: UI":
 - changed-files:
   - any-glob-to-any-file: '**/*.xaml*'
 
-"Changes: Shaders":
+"Изм: Шейдеры":
 - changed-files:
   - any-glob-to-any-file: '**/*.swsl'
 
-"Changes: Audio":
+"Изм: Аудио":
 - changed-files:
   - any-glob-to-any-file: '**/*.ogg'
 
-"Changes: Localization":
+"Изм: Локализация":
 - changed-files:
   - any-glob-to-any-file: '**/*.ftl'
 
-"Changes: No C#":
+"Изм: Нет C#":
 - changed-files:
   # Equiv to any-glob-to-all as long as this has one matcher. If ALL changed files are not C# files, then apply label.
   - all-globs-to-all-files: "!**/*.cs"
+
+# NH-Add-Start
+"Изм: Прототипы": 
+- changed-files:
+  - any-glob-to-any-file:
+    - 'Resources/Prototypes/**/*.yml'
+    - 'Resources/Prototypes/*.yml'
+
+"Изм: Гайдбук":
+- changed-files:
+  - any-glob-to-any-file:
+    - 'Resources/ServerInfo/**/*.xml'
+    - 'Resources/Prototypes/Guidebook/**/*.yml'
+    - 'Resources/Prototypes/*/Guidebook/**/*.xml'
+# NH-Add-End

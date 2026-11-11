@@ -2,7 +2,7 @@ name: RSI Validator
 
 on:
   push:
-    branches: [ master, staging, stable ]
+    branches: [ master, staging, stable, main, dev, experimental, test, testing, unstable, event, upstream, beta, release, production ]
   merge_group:
   pull_request:
     types: [ opened, reopened, synchronize, ready_for_review ]

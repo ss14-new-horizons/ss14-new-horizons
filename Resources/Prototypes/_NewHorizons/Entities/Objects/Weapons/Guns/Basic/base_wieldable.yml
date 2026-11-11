@@ -1,0 +1,12 @@
+# A basic inheritable template for a battery (energy/pulse/laser) gun that is wieldable and has the increased inaccuracy.
+- type: entity
+  parent: BaseGunWieldable
+  id: BaseGunWieldableBattery
+  abstract: true
+  components:
+  - type: GunWieldBonus
+    minAngle: -10
+    maxAngle: -20
+  - type: Gun
+    minAngle: 11
+    maxAngle: 22   

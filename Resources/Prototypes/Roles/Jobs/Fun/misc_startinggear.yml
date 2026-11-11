@@ -157,6 +157,17 @@
     - trayScanner
     - AccessConfiguratorUniversal
     - Multitool
+    # NH-Add-Start
+    - Omnitool
+    - DoorRemoteAll
+    - AnomalyScannerAdmin
+    - HandTeleporterAdmeme
+    - ImplanterAdmeme
+    - ClothingEyesHudOmni
+    - RubberStampCentcom
+    - RubberStampApproved
+    - RubberStampDenied
+    # NH-Add-End
 
 #Gladiator with spear
 - type: startingGear

@@ -92,6 +92,7 @@
     zapHeal:
       types:
         Asphyxiation: -40
+    zapDelay: 8 # NH-Add (Increased cooldown from default 5 seconds)
     doAfterDuration: 6
   - type: DoAfter
   - type: UseDelay

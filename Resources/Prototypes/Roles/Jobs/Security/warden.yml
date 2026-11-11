@@ -6,7 +6,14 @@
   requirements:
     - !type:DepartmentTimeRequirement
       department: Security
-      time: 50h # Corvax-RoleTime
+      time: 30h # Corvax-RoleTime # NH-Tweak (50h)
+    # NH-Add-Start (Job rework)
+    - !type:RoleTimeRequirement
+      role: JobSecurityOfficer
+      time: 5h
+    - !type:AgeRequirement
+      requiredAge: 21
+    # NH-Add-End
     - !type:TraitsRequirement #Corvax-TraitsRequirement
       inverted: true
       traits:

@@ -3,28 +3,37 @@
   name: job-name-hop
   description: job-description-hop
   playTimeTracker: JobHeadOfPersonnel
+  requireAdminNotify: true # NH-Add (Job rework)
   requirements:
     - !type:DepartmentTimeRequirement
-      department: Engineering
+      department: Service # NH-Edit (Engineering, Job rework)
       time: 5h # Corvax-RoleTime 2.5h
+    # NH-Remove-Start (Job rework)
+    # - !type:DepartmentTimeRequirement
+    #   department: Medical
+    #   time: 5h # Corvax-RoleTime 2.5h
+    # - !type:DepartmentTimeRequirement
+    #   department: Science
+    #   time: 2.5h
+    # NH-Remove-End
     - !type:DepartmentTimeRequirement
-      department: Medical
+      department: Cargo # NH-Edit (Security, Job rework)
       time: 5h # Corvax-RoleTime 2.5h
+    # NH-Add-Start (Job rework, uncommented Command requirement)
     - !type:DepartmentTimeRequirement
-      department: Science
+      department: Command
       time: 2.5h
-    - !type:DepartmentTimeRequirement
-      department: Security
-      time: 5h # Corvax-RoleTime 2.5h
-#    - !type:DepartmentTimeRequirement
-#      department: Command
-#      time: 2.5h
+    # NH-Add-End
     - !type:OverallPlaytimeRequirement
       time: 50h # Corvax-RoleTime
     - !type:TraitsRequirement #Corvax-TraitsRequirement
       inverted: true
       traits:
       - Muted
+    # NH-Add-Start (Job rework)
+    - !type:AgeRequirement
+      requiredAge: 24
+    # NH-Add-End
   startingGear: HoPGear
   icon: "JobIconHeadOfPersonnel"
   supervisors: job-supervisors-captain

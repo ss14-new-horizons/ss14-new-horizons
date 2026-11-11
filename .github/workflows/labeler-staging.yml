@@ -6,6 +6,13 @@ on:
       - opened
     branches:
       - 'staging'
+      - 'testing'
+      - 'test'
+      - 'beta'
+      - 'experimental'
+      - 'event'
+      - 'upstream'
+      - 'unstable'
 
 jobs:
   add_label:
@@ -13,4 +20,4 @@ jobs:
     steps:
     - uses: actions-ecosystem/action-add-labels@v1
       with:
-        labels: "Branch: Staging"
+        labels: "Ветка: Тестовая"

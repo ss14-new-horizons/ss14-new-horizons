@@ -166,6 +166,7 @@
     children:
     - id: ClothingOuterHardsuitAtmos
     - id: OxygenTankFilled
+    - id: NitrogenTankFilled # NH-Add
     - id: ClothingMaskBreath
 
 - type: entity
@@ -213,6 +214,7 @@
     children:
     - id: ClothingOuterHardsuitEngineering
     - id: OxygenTankFilled
+    - id: NitrogenTankFilled # NH-Add
     - id: ClothingShoesBootsMag
     - id: ClothingMaskBreath
 

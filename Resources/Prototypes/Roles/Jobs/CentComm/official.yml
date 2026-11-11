@@ -7,6 +7,12 @@
   startingGear: CentcommGear
   icon: "JobIconNanotrasen"
   supervisors: job-supervisors-centcom # Corvax-JobSupervisors
+  # NH-Add-Start (Job rework, ghostrole time requirements)
+  requirements:
+  - !type:DepartmentTimeRequirement
+    department: Command
+    time: 10h
+  # NH-Add-End
   accessGroups:
   - AllAccess
   access:

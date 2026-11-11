@@ -20,7 +20,7 @@
   voices:
   - UnisexDiona
   # Corvax-SpeciesAgeLore-Start
-  youngAge: 3000
-  oldAge: 6000
-  maxAge: 12000
+  youngAge: 60 # NH-Tweak (3000, species lore, non-linear aging)
+  oldAge: 600 # NH-Tweak (6000, species lore, non-linear aging)
+  maxAge: 6000 # NH-Tweak (12000, species lore, non-linear aging)
   # Corvax-SpeciesAgeLore-End

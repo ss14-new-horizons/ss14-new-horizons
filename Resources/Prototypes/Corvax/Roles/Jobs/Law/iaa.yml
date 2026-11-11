@@ -3,6 +3,7 @@
   name: job-name-iaa
   description: job-description-iaa
   playTimeTracker: JobIAA
+  requireAdminNotify: true # NH-Add (Job rework)
   requirements:
   - !type:DepartmentTimeRequirement
     department: Command
@@ -14,6 +15,10 @@
     inverted: true
     traits:
     - Muted
+  # NH-Add-Start (Job rework)
+  - !type:AgeRequirement
+    requiredAge: 21
+  # NH-Add-End
   startingGear: IAAGear
   icon: "JobIconIAA"
   supervisors: job-supervisors-centcom

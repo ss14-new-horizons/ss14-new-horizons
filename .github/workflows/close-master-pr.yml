@@ -11,17 +11,17 @@ jobs:
         && github.event.pull_request.head.repo.fork}}
 
     steps:
-    - uses: superbrothers/close-pull-request@v3
-      with:
-        comment: "Спасибо за ваш вклад! Похоже, вы создали pull request из master ветки или другой основной ветки вашего репозитория. Это [то, чего вам следует избегать] (https://jmeridth.com/posts/do-not-issue-pull-requests-from-your-master-branch/), поэтому этот PR был автоматически закрыт. \n\n Мы рекомендуем вам следовать [этому руководству по разработке](https://docs.spacestation14.com/en/general-development/setup/git-for-the-ss14-developer.html). \n\n Вы можете перенести свою текущую работу в другую ветку, следуя [этим инструкциям](https://ohshitgit.com/#accidental-commit-master). Затем вы можете повторно создать pull request с новой ветки."
+    # - uses: superbrothers/close-pull-request@v3
+    #   with:
+    #     comment: "Спасибо за ваш вклад! Похоже, вы создали pull request из master ветки или другой основной ветки вашего репозитория. Это [то, чего вам следует избегать] (https://jmeridth.com/posts/do-not-issue-pull-requests-from-your-master-branch/), поэтому этот PR был автоматически закрыт. \n\n Мы рекомендуем вам следовать [этому руководству по разработке](https://docs.spacestation14.com/en/general-development/setup/git-for-the-ss14-developer.html). \n\n Вы можете перенести свою текущую работу в другую ветку, следуя [этим инструкциям](https://ohshitgit.com/#accidental-commit-master). Затем вы можете повторно создать pull request с новой ветки."
 
     # If you prefer to just comment on the pr and not close it, uncomment the below and comment the above
 
-    # - uses: actions/github-script@v7
-    #   with:
-    #     script: |
-    #       github.rest.issues.createComment({
-    #         issue_number: ${{ github.event.number }},
-    #         owner: context.repo.owner,
-    #         repo: context.repo.repo,
-    #         body: "Спасибо за ваш вклад! Похоже, вы создали pull request из master ветки или другой основной ветки вашего репозитория. Это [то, чего вам следует избегать] (https://jmeridth.com/posts/do-not-issue-pull-requests-from-your-master-branch/) \n\n Вы можете перенести свою текущую работу в другую ветку, следуя [этим инструкциям](https://ohshitgit.com/#accidental-commit-master). Затем вы можете повторно создать pull request с новой ветки. \n\n Этот PR не будет автоматически закрыт, тем не менее, мейнтейнер имеет право отклонить PR по вышеуказанной причине.\n\n Мы рекомендуем вам следовать [этому руководству по разработке](https://docs.spacestation14.com/en/general-development/setup/git-for-the-ss14-developer.html)."})
+    - uses: actions/github-script@v7
+      with:
+        script: |
+          github.rest.issues.createComment({
+            issue_number: ${{ github.event.number }},
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: "Спасибо за ваш вклад! Похоже, вы создали pull request из master ветки или другой основной ветки вашего репозитория. Это [то, чего вам следует избегать] (https://jmeridth.com/posts/do-not-issue-pull-requests-from-your-master-branch/) \n\n Вы можете перенести свою текущую работу в другую ветку, следуя [этим инструкциям](https://ohshitgit.com/#accidental-commit-master). Затем вы можете повторно создать pull request с новой ветки. \n\n Этот PR не будет автоматически закрыт, тем не менее, мейнтейнер имеет право отклонить PR по вышеуказанной причине.\n\n Мы рекомендуем вам следовать [этому руководству по разработке](https://docs.spacestation14.com/en/general-development/setup/git-for-the-ss14-developer.html)."})

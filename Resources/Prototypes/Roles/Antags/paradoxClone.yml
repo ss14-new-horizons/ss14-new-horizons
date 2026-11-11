@@ -7,6 +7,11 @@
   tags:
   - OffStation
   - Midround
+  # NH-Add-Start (Antag and ghostrole time requirements)
+  requirements:
+  - !type:OverallPlaytimeRequirement
+    time: 5h
+  # NH-Add-End
 
 - type: antagSpecifier
   parent: RestrictedAntag

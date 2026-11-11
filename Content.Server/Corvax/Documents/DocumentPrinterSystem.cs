@@ -57,7 +57,7 @@ public sealed partial class DocumentPrinterSystem : EntitySystem
     private string GetTimeStation()
     {
         var time = _gameTicker.RoundDuration().ToString("hh\\:mm\\:ss");
-        return time + " " + DateTime.Now.AddYears(1000).ToShortDateString();
+        return time + " " + DateTime.Now.AddYears(500).ToShortDateString(); // NH-Tweak (1000 -> 500 years)
     }
 
 }
