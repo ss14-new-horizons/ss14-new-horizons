@@ -61,8 +61,8 @@ public sealed partial class RadioSystem : SharedRadioSystem
         var evt = new TransformSpeakerNameEvent(messageSource, MetaData(messageSource).EntityName);
         RaiseLocalEvent(messageSource, evt);
 
-        var transformedName = evt.VoiceName;
-        var name = _chat.ChatNameLinks ? $"[textlink=\"{FormattedMessage.EscapeStringParameter(transformedName)}\" entity=\"{GetNetEntity(messageSource)}\" color=\"{channel.Color.ToHex()}\"]" : FormattedMessage.EscapeText(transformedName);
+        var transformedName = evt.VoiceName; // NH-Edit (Radio job icons: name -> transformedName)
+        var name = _chat.ChatNameLinks ? $"[textlink=\"{FormattedMessage.EscapeStringParameter(transformedName)}\" entity=\"{GetNetEntity(messageSource)}\" color=\"{channel.Color.ToHex()}\"]" : FormattedMessage.EscapeText(transformedName); // NH-Edit (Radio job icons: independent var that references transformedName)
         // NH-Add-Start (Radio job icons)
         if (evt.JobIcon != null)
             name = $"[jobicon=\"{evt.JobIcon}\"]" + name;
@@ -135,12 +135,12 @@ public sealed partial class RadioSystem : SharedRadioSystem
             RaiseLocalEvent(receiver, ref ev);
         }
 
-        // NH-Edit-Start (Radio job icons)
+        // NH-Edit-Start (Radio job icons: name -> transformedName)
         if (transformedName != Name(messageSource))
             _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Radio message from {ToPrettyString(messageSource):user} as {transformedName} on {channel.LocalizedName}: {message}");
+        // NH-Edit-End
         else
             _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Radio message from {ToPrettyString(messageSource):user} on {channel.LocalizedName}: {message}");
-        // NH-Edit-End
 
         _replay.RecordServerMessage(chat);
         _messages.Remove(message);

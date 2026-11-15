@@ -3,6 +3,7 @@ using Content.Shared._NewHorizons.Radio.EntitySystems;
 using Content.Shared.Chat;
 using Content.Shared.Mobs.Components;
 using Content.Shared.StatusIcon;
+using Content.Shared.StatusIcon.Components;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server._NewHorizons.Chat.Systems;
@@ -31,6 +32,10 @@ public sealed partial class ChatJobIconSystem : EntitySystem
     {
         // If an innate icon (or other override) is already set, keep it.
         if (args.JobIcon != null)
+            return;
+
+        // Mobs that can't have job icons don't get any.
+        if (!HasComp<JobStatusComponent>(ent))
             return;
 
         // Try finding ID card (the original method: checks inventory slot, PDA container, etc.)
