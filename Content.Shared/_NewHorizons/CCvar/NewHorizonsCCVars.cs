@@ -12,4 +12,9 @@ namespace Content.Shared._NewHorizons.CCVar;
 [CVarDefs]
 public sealed partial class NewHorizonsCCVars : CVars
 {
+    /// <summary>
+    ///     Toggles displaying job icons in chat.
+    /// </summary>
+    public static readonly CVarDef<bool> ChatShowJobIcons =
+        CVarDef.Create("chat.show_job_icons", true, CVar.CLIENTONLY | CVar.ARCHIVE);
 }

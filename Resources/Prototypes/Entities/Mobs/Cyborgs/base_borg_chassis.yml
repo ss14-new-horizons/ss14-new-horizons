@@ -109,6 +109,10 @@
     fuelCost: 0.5
     allowSelfRepair: false
   - type: BorgChassis
+  # NH-Add-Start (Radio job icons)
+  - type: InnateRadioJobIcon
+    icon: JobIconBorg
+  # NH-Add-End
   - type: LockingWhitelist
     blacklist:
       components:

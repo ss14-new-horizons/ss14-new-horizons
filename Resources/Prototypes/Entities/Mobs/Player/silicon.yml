@@ -29,6 +29,10 @@
     - Supply
   - type: IgnoreUIRange
   - type: StationAiHeld
+  # NH-Add-Start (Radio job icons)
+  - type: InnateRadioJobIcon
+    icon: JobIconStationAi
+  # NH-Add-End
   - type: StationAiOverlay
   - type: ShowElectrocutionHUD
   - type: ActionGrant
@@ -455,6 +459,10 @@
     - HideContextMenu
     - StationAi
     - NoConsoleSound
+  # NH-Add-Start (Radio job icons)
+  - type: InnateRadioJobIcon
+    icon: JobIconStationAi
+  # NH-Add-End
   - type: StartingMindRole
     mindRole: "MindRoleSiliconBrain"
     silent: true

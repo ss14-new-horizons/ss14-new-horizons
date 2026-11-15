@@ -14,6 +14,7 @@ using Content.Client.Mind;
 using Content.Client.UserInterface.Screens;
 using Content.Client.UserInterface.Systems.Chat.Widgets;
 using Content.Client.UserInterface.Systems.Gameplay;
+using Content.Shared._NewHorizons.CCVar; // NH-Add (Radio job icons)
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
 using Content.Shared.Chat;
@@ -239,6 +240,8 @@ public sealed partial class ChatUIController : UIController
         }
 
         _config.OnValueChanged(CCVars.ChatWindowOpacity, OnChatWindowOpacityChanged);
+
+        _config.OnValueChanged(NewHorizonsCCVars.ChatShowJobIcons, _ => Repopulate()); // NH-Add (Radio job icons)
 
         InitializeHighlights();
     }
